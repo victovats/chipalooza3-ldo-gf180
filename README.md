@@ -88,6 +88,13 @@ resistors are high-resistance poly `ppolyf_u_1k_6p0`, and the compensation
 capacitor is a MIM `cap_mim_2f0fF`. `EN` comes from the harness's 3.3V logic, so it passes through an
 internal 3.3V-to-`VIN` level shifter (`xschem/ldo_levelshift.sch`).
 
+When `EN` is low the whole block is shut down, not just the pass device: a PMOS
+switch (`MBIASSW`) disconnects the bias resistors `Rref`, `RrefFB` and `RrefEA`
+from `VIN`, NMOS pulldowns (`MPDREF`, `MPDFB`, `MPDEA`) clamp the bias nodes to
+`VSS`, and `MENPASSOFF` holds the pass-transistor gate at `VIN`. `VOUT` is then
+discharged to 0V by the feedback divider and the block draws only leakage from
+`VIN` (sub-nA in simulation).
+
 ### Passive Devices
 
 | Instance | Value | Device | W x L |
@@ -106,17 +113,26 @@ Typical corner, 27 C, `VIN` = 5.0V, `VREF` = 1.2V, `EN` = 3.3V. Full results,
 plots and the process/temperature corner table are in
 [`simulations/results/summary.md`](simulations/results/summary.md).
 
-| Parameter | Spec | Simulated |
-|---|---|---|
-| Output voltage (5 mA) | 3.201V - 3.399V | 3.309V |
-| Dropout voltage (10 mA) | max 300 mV | 152 mV (262 mV worst corner) |
-| Quiescent current | max 100 uA | 62 uA (90 uA worst corner) |
-| Line regulation | max 1% | 0.042% (0.085% worst corner) |
-| Load regulation | max 1% | 0.270% (0.75% worst corner) |
-| PSRR (low frequency) | min 40 dB | 59 dB at 100 Hz (53 dB worst corner) |
+All testbenches drive the LDO with ideal sources: `VIN` and `VREF` are ideal
+voltage sources, `EN` is an ideal 3.3V source, and `VOUT` is loaded by an ideal
+DC current sink to ground (or a 660 Ohm resistor for the `EN` tests, so `VOUT`
+can rest at 0V when off) in parallel with a 2 pF capacitor. Every plot in
+`simulations/results/` carries a "Test conditions" panel with the exact load,
+sweep and metric used.
+
+| Parameter | Spec | How it is tested | Simulated |
+|---|---|---|---|
+| Output voltage | 3.201V - 3.399V | DC, 5 mA current-sink load | 3.309V |
+| Dropout voltage | max 300 mV | DC sweep `VIN` 3.3 -> 5.5V, 10 mA current-sink load | 152 mV (262 mV worst corner) |
+| Quiescent current | max 100 uA | DC operating point, no load (0 mA) | 62 uA (90 uA worst corner) |
+| Line regulation | max 1% | DC sweep `VIN` 4.5 -> 5.5V, 5 mA current-sink load | 0.042% (0.085% worst corner) |
+| Load regulation | max 1% | DC sweep of current-sink load 0 -> 10 mA, `VIN` = 5.0V | 0.269% (0.73% worst corner) |
+| PSRR (low frequency) | min 40 dB | AC small-signal on `VIN`, 5 mA current-sink load | 59 dB at 100 Hz (53 dB worst corner) |
+| Shutdown current | - | DC operating point, `EN` = 0V, no load | 0.19 nA (3.3 nA worst corner) |
 
 Worst corners: dropout at slow MOS / slow resistors / 110 C; quiescent current
-and load regulation at fast MOS / fast resistors / 110 C.
+and load regulation at fast MOS / fast resistors / 110 C; shutdown
+current at fast MOS / 110 C (leakage).
 
 ## 8. Repository Layout
 
