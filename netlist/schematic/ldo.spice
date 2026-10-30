@@ -9,7 +9,7 @@
 *.opin FB_BUF
 *.opin EAOUT_BUF
 *.iopin VSS
-XRref IREF VIN VSS ppolyf_u_1k_6p0 r_width=1e-6 r_length=194.27e-6
+XRref IREF VIN_BIAS VSS ppolyf_u_1k_6p0 r_width=1e-6 r_length=194.27e-6
 XMREF VSS IREF IREF VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XMTAIL TAIL IREF VSS VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
@@ -18,14 +18,14 @@ XMENPASSOFF VIN EN_5V EAOUT VIN pfet_06v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XMENDISCHARGE VOUT ENB_5V VSS VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-XRrefFB IREF_FB VIN VSS ppolyf_u_1k_6p0 r_width=1e-6 r_length=1944.26e-6
+XRrefFB IREF_FB VIN_BIAS VSS ppolyf_u_1k_6p0 r_width=1e-6 r_length=1944.26e-6
 XMREFFB VSS IREF_FB IREF_FB VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XMFBBUF FB_BUF FB VIN VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XMBIASFB FB_BUF IREF_FB VSS VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
-XRrefEA IREF_EA VIN VSS ppolyf_u_1k_6p0 r_width=1e-6 r_length=1944.26e-6
+XRrefEA IREF_EA VIN_BIAS VSS ppolyf_u_1k_6p0 r_width=1e-6 r_length=1944.26e-6
 XMREFEA VSS IREF_EA IREF_EA VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XMEAOUTBUF EAOUT_BUF EAOUT VIN VSS nfet_05v0 L=0.6u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
@@ -50,6 +50,14 @@ XMCASC1 CASCB1 EAREF EAREF VIN pfet_06v0 L=0.55u W=5u nf=1 ad='int((nf+1)/2) * W
 XMCASC2 EAOUT EAREF CASCB2 VIN pfet_06v0 L=0.55u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 xls EN VIN EN_5V ENB_5V VSS ldo_levelshift
+XMBIASSW VIN_BIAS ENB_5V VIN VIN pfet_06v0 L=0.6u W=10u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XMPDREF IREF ENB_5V VSS VSS nfet_05v0 L=0.6u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XMPDFB IREF_FB ENB_5V VSS VSS nfet_05v0 L=0.6u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
+XMPDEA IREF_EA ENB_5V VSS VSS nfet_05v0 L=0.6u W=1u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 .ends
 
 .subckt ldo_levelshift EN VIN OUT OUTB VSS
