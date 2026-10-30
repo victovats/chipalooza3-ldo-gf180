@@ -83,17 +83,18 @@ Provides a locally-regulated, low-noise 3.3V rail, isolated from the noise on th
 | Bandgap-referenced current sources | none (biasing is internal) |
 
 All devices are GF180MCU PDK devices rated for the 5.0V `VIN` domain:
-transistors are `nfet_05v0` / `pfet_05v0`, resistors are high-resistance poly
-`ppolyf_u_2k_6p0`, and the compensation capacitor is a MIM `cap_mim_2f0fF`. `EN` comes from the harness's 3.3V logic, so it passes through an
+transistors are `pfet_06v0`, `nfet_06v0` (long-channel) and `nfet_05v0` (L = 0.6 um),
+resistors are high-resistance poly `ppolyf_u_1k_6p0`, and the compensation
+capacitor is a MIM `cap_mim_2f0fF`. `EN` comes from the harness's 3.3V logic, so it passes through an
 internal 3.3V-to-`VIN` level shifter (`xschem/ldo_levelshift.sch`).
 
 ### Passive Devices
 
 | Instance | Value | Device | W x L |
 |---|---|---|---|
-| `Rref` (error-amp tail bias) | 200 kOhm | `ppolyf_u_2k_6p0` | 1 x 95.59 um |
-| `RrefFB`, `RrefEA` (test-buffer bias) | 2 MOhm | `ppolyf_u_2k_6p0` | 1 x 957.9 um |
-| `R1` / `R2` (feedback divider) | 175 / 100 kOhm | `ppolyf_u_2k_6p0` | 2 x 171.40 / 2 x 97.85 um |
+| `Rref` (error-amp tail bias) | 200 kOhm | `ppolyf_u_1k_6p0` | 1 x 194.27 um |
+| `RrefFB`, `RrefEA` (test-buffer bias) | 2 MOhm | `ppolyf_u_1k_6p0` | 1 x 1944.26 um |
+| `R1` / `R2` (feedback divider) | 175 / 100 kOhm | `ppolyf_u_1k_6p0` | 2 x 345.30 / 2 x 197.24 um |
 | `Cc` (Miller compensation) | 3.0 pF | `cap_mim_2f0fF` | 38.6 x 38.6 um |
 
 `R1` and `R2` use the same resistor type and width, so their ratio (which sets
@@ -108,11 +109,11 @@ plots and the process/temperature corner table are in
 | Parameter | Spec | Simulated |
 |---|---|---|
 | Output voltage (5 mA) | 3.201V - 3.399V | 3.309V |
-| Dropout voltage (10 mA) | max 300 mV | 152 mV (263 mV worst corner) |
-| Quiescent current | max 100 uA | 62 uA (95 uA worst corner) |
-| Line regulation | max 1% | 0.042% (0.087% worst corner) |
-| Load regulation | max 1% | 0.270% (0.81% worst corner) |
-| PSRR (low frequency) | min 40 dB | 59 dB at 100 Hz (52 dB worst corner) |
+| Dropout voltage (10 mA) | max 300 mV | 152 mV (262 mV worst corner) |
+| Quiescent current | max 100 uA | 62 uA (90 uA worst corner) |
+| Line regulation | max 1% | 0.042% (0.085% worst corner) |
+| Load regulation | max 1% | 0.270% (0.75% worst corner) |
+| PSRR (low frequency) | min 40 dB | 59 dB at 100 Hz (53 dB worst corner) |
 
 Worst corners: dropout at slow MOS / slow resistors / 110 C; quiescent current
 and load regulation at fast MOS / fast resistors / 110 C.
@@ -145,10 +146,10 @@ in this repository or in the PDK via `$PDK_ROOT`.
 
 ## 10. Open Items
 
-- Quiescent current has ~5% margin at the fast-resistor / 110 C corner
-  (95 uA vs 100 uA); bias currents are set by poly resistors from `VIN`.
+- Quiescent current has ~10% margin at the fast-resistor / 110 C corner
+  (90 uA vs 100 uA); bias currents are set by poly resistors from `VIN`.
 - Add an AC loop-gain / phase-margin testbench across corners (current
   stability evidence: load- and line-step transients).
-- Load-step overshoot (+312 mV for a 0-10 mA step in 1 us) is not yet
+- Load-step overshoot (+313 mV for a 0-10 mA step in 1 us) is not yet
   specified; decide on a transient spec or reduce it.
 - Layout in the harness slot (template TBD), DRC/LVS, post-layout PVT.

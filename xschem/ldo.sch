@@ -5,68 +5,73 @@ V {}
 S {}
 F {}
 E {}
-T {EN level shifter: 3.3V logic -> VIN domain} 2500 -1580 0 0 0.3 0.3 {}
-N 1750 -720 1890 -720 {lab=IREF_FB}
-N 2980 -1070 2980 -1000 {lab=CASCB2}
-N 2630 -1070 2630 -1000 {lab=CASCB1}
-N 2670 -1100 2940 -1100 {lab=CASCB1}
-N 2630 -940 2630 -890 {lab=EAREF}
-N 2980 -940 2980 -890 {lab=EAOUT}
-N 2800 -830 2800 -680 {lab=TAIL}
-N 3410 -830 3410 -770 {lab=FB}
-N 2630 -830 2980 -830 {lab=TAIL}
-N 2540 -680 2540 -650 {lab=IREF}
-N 2500 -680 2540 -680 {lab=IREF}
-N 2500 -800 2500 -770 {lab=VIN}
-N 1710 -900 1930 -900 {lab=VIN}
-N 1940 -1150 1940 -1080 {lab=EAOUT_BUF}
-N 1720 -1150 1720 -1090 {lab=IREF_EA}
-N 1760 -1090 1760 -1060 {lab=IREF_EA}
-N 1720 -1090 1760 -1090 {lab=IREF_EA}
-N 2670 -970 2940 -970 {lab=EAREF}
-N 2630 -920 2700 -920 {lab=EAREF}
-N 2700 -970 2700 -920 {lab=EAREF}
-N 3020 -860 3060 -860 {lab=VREF}
-N 3060 -860 3090 -860 {lab=VREF}
-N 1760 -1060 1900 -1060 {lab=IREF_EA}
-N 1720 -1210 1940 -1210 {lab=VIN}
-N 1710 -840 1710 -750 {lab=IREF_FB}
-N 1710 -750 1750 -750 {lab=IREF_FB}
-N 1750 -750 1750 -720 {lab=IREF_FB}
-N 1930 -840 1930 -750 {lab=FB_BUF}
-N 2430 -860 2590 -860 {lab=FB}
-N 3090 -860 3180 -860 {lab=VREF}
-N 2630 -1240 2630 -1130 {lab=VIN}
-N 2630 -1240 2980 -1240 {lab=VIN}
-N 2980 -1240 2980 -1130 {lab=VIN}
-N 2980 -920 3120 -920 {lab=EAOUT}
-N 3120 -920 3180 -920 {lab=EAOUT}
-N 3410 -1110 3410 -1070 {lab=VIN}
-N 3250 -1040 3370 -1040 {lab=EAOUT}
-N 3410 -940 3410 -890 {lab=VOUT}
-N 2500 -710 2500 -680 {lab=IREF}
-N 2540 -650 2760 -650 {lab=IREF}
-N 3360 -920 3410 -920 {lab=VOUT}
-N 3250 -920 3300 -920 {lab=EAOUT}
-N 3410 -950 3410 -940 {lab=VOUT}
-N 3410 -920 3620 -920 {lab=VOUT}
-N 3250 -980 3250 -920 {lab=EAOUT}
-N 3200 -1380 3300 -1380 {lab=EN_5V}
-N 3160 -1520 3160 -1410 {lab=VIN}
-N 3180 -920 3250 -920 {lab=EAOUT}
-N 3250 -1040 3250 -980 {lab=EAOUT}
-N 3410 -1010 3410 -950 {lab=VOUT}
-N 3160 -1350 3160 -920 {lab=EAOUT}
-N 3620 -920 3790 -920 {lab=VOUT}
+T {EN level shifter: 3.3V logic -> VIN domain} 1260 -1040 0 0 0.3 0.3 {}
+T {Buffer to test EAOUT} 710 -730 0 0 0.4 0.4 {}
+T {Buffer to test feedback potential} 710 -430 0 0 0.4 0.4 {}
+T {-Uses pdk resistors and caps
+-pdk transistors
+} 190 -670 0 0 0.4 0.4 {}
+N 750 -160 890 -160 {lab=IREF_FB}
+N 1740 -530 1740 -460 {lab=CASCB2}
+N 1390 -530 1390 -460 {lab=CASCB1}
+N 1430 -560 1700 -560 {lab=CASCB1}
+N 1390 -400 1390 -350 {lab=EAREF}
+N 1740 -400 1740 -350 {lab=EAOUT}
+N 1560 -290 1560 -140 {lab=TAIL}
+N 2170 -290 2170 -230 {lab=FB}
+N 1390 -290 1740 -290 {lab=TAIL}
+N 1300 -140 1300 -110 {lab=IREF}
+N 1260 -140 1300 -140 {lab=IREF}
+N 1260 -260 1260 -230 {lab=VIN}
+N 710 -340 930 -340 {lab=VIN}
+N 940 -590 940 -520 {lab=EAOUT_BUF}
+N 720 -590 720 -530 {lab=IREF_EA}
+N 760 -530 760 -500 {lab=IREF_EA}
+N 720 -530 760 -530 {lab=IREF_EA}
+N 1430 -430 1700 -430 {lab=EAREF}
+N 1390 -380 1460 -380 {lab=EAREF}
+N 1460 -430 1460 -380 {lab=EAREF}
+N 1780 -320 1820 -320 {lab=VREF}
+N 1820 -320 1850 -320 {lab=VREF}
+N 760 -500 900 -500 {lab=IREF_EA}
+N 720 -650 940 -650 {lab=VIN}
+N 710 -280 710 -190 {lab=IREF_FB}
+N 710 -190 750 -190 {lab=IREF_FB}
+N 750 -190 750 -160 {lab=IREF_FB}
+N 930 -280 930 -190 {lab=FB_BUF}
+N 1190 -320 1350 -320 {lab=FB}
+N 1850 -320 1940 -320 {lab=VREF}
+N 1390 -700 1390 -590 {lab=VIN}
+N 1390 -700 1740 -700 {lab=VIN}
+N 1740 -700 1740 -590 {lab=VIN}
+N 1740 -380 1880 -380 {lab=EAOUT}
+N 1880 -380 1940 -380 {lab=EAOUT}
+N 2170 -570 2170 -530 {lab=VIN}
+N 2010 -500 2130 -500 {lab=EAOUT}
+N 2170 -400 2170 -350 {lab=VOUT}
+N 1260 -170 1260 -140 {lab=IREF}
+N 1300 -110 1520 -110 {lab=IREF}
+N 2120 -380 2170 -380 {lab=VOUT}
+N 2010 -380 2060 -380 {lab=EAOUT}
+N 2170 -410 2170 -400 {lab=VOUT}
+N 2170 -380 2380 -380 {lab=VOUT}
+N 2010 -440 2010 -380 {lab=EAOUT}
+N 1960 -840 2060 -840 {lab=EN_5V}
+N 1920 -980 1920 -870 {lab=VIN}
+N 1940 -380 2010 -380 {lab=EAOUT}
+N 2010 -500 2010 -440 {lab=EAOUT}
+N 2170 -470 2170 -410 {lab=VOUT}
+N 1920 -810 1920 -380 {lab=EAOUT}
+N 2380 -380 2550 -380 {lab=VOUT}
 C {devices/title.sym} 160 90 0 0 {name=l1 author="Capless LDO, 5.0V to 3.3V (GF180MCU)"}
-C {symbols/ppolyf_u_2k_6p0.sym} 2500 -740 0 0 {name=Rref
+C {symbols/ppolyf_u_1k_6p0.sym} 1260 -200 0 0 {name=Rref
 W=1e-6
-L=95.59e-6
-model=ppolyf_u_2k_6p0
+L=194.27e-6
+model=ppolyf_u_1k_6p0
 spiceprefix=X
 m=1}
-C {devices/lab_pin.sym} 2480 -740 0 0 {name=lbRref sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 2520 -650 2 0 {name=MREF
+C {devices/lab_pin.sym} 1240 -200 0 0 {name=lbRref sig_type=std_logic lab=VSS}
+C {symbols/nfet_05v0.sym} 1280 -110 2 0 {name=MREF
 L=0.6u
 W=5u
 nf=1
@@ -80,7 +85,7 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {symbols/nfet_05v0.sym} 2780 -650 0 0 {name=MTAIL
+C {symbols/nfet_05v0.sym} 1540 -110 0 0 {name=MTAIL
 L=0.6u
 W=5u
 nf=1
@@ -94,8 +99,8 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 3300 -1380 2 0 {name=lenvng sig_type=std_logic lab=EN_5V}
-C {symbols/pfet_05v0.sym} 3180 -1380 2 0 {name=MENPASSOFF
+C {devices/lab_pin.sym} 2060 -840 2 0 {name=lenvng sig_type=std_logic lab=EN_5V}
+C {symbols/pfet_06v0.sym} 1940 -840 2 0 {name=MENPASSOFF
 L=0.6u
 W=5u
 nf=1
@@ -106,11 +111,11 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=pfet_05v0
+model=pfet_06v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 3160 -1380 0 0 {name=lenpob sig_type=std_logic lab=VIN}
-C {symbols/nfet_05v0.sym} 3770 -890 0 0 {name=MENDISCHARGE
+C {devices/lab_pin.sym} 1920 -840 0 0 {name=lenpob sig_type=std_logic lab=VIN}
+C {symbols/nfet_05v0.sym} 2530 -350 0 0 {name=MENDISCHARGE
 L=0.6u
 W=5u
 nf=1
@@ -124,17 +129,17 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 3790 -860 0 0 {name=lendcs sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 3790 -890 2 0 {name=lendcb sig_type=std_logic lab=VSS}
-C {symbols/ppolyf_u_2k_6p0.sym} 1710 -870 0 0 {name=RrefFB
+C {devices/lab_pin.sym} 2550 -320 0 0 {name=lendcs sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 2550 -350 2 0 {name=lendcb sig_type=std_logic lab=VSS}
+C {symbols/ppolyf_u_1k_6p0.sym} 710 -310 0 0 {name=RrefFB
 W=1e-6
-L=957.9e-6
-model=ppolyf_u_2k_6p0
+L=1944.26e-6
+model=ppolyf_u_1k_6p0
 spiceprefix=X
 m=1}
-C {devices/lab_pin.sym} 1690 -870 0 0 {name=lbRrefFB sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1820 -900 1 0 {name=lrreffbp sig_type=std_logic lab=VIN}
-C {symbols/nfet_05v0.sym} 1730 -720 2 0 {name=MREFFB
+C {devices/lab_pin.sym} 690 -310 0 0 {name=lbRrefFB sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 820 -340 1 0 {name=lrreffbp sig_type=std_logic lab=VIN}
+C {symbols/nfet_05v0.sym} 730 -160 2 0 {name=MREFFB
 L=0.6u
 W=5u
 nf=1
@@ -148,10 +153,10 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1820 -720 1 0 {name=lreffbg sig_type=std_logic lab=IREF_FB}
-C {devices/lab_pin.sym} 1710 -690 2 0 {name=lreffbs sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1710 -720 2 0 {name=lreffbb sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 1950 -870 2 0 {name=MFBBUF
+C {devices/lab_pin.sym} 820 -160 1 0 {name=lreffbg sig_type=std_logic lab=IREF_FB}
+C {devices/lab_pin.sym} 710 -130 2 0 {name=lreffbs sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 710 -160 0 0 {name=lreffbb sig_type=std_logic lab=VSS}
+C {symbols/nfet_05v0.sym} 950 -310 2 0 {name=MFBBUF
 L=0.6u
 W=5u
 nf=1
@@ -165,8 +170,8 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1930 -870 0 0 {name=lfbbufb sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 1910 -720 0 0 {name=MBIASFB
+C {devices/lab_pin.sym} 930 -310 0 0 {name=lfbbufb sig_type=std_logic lab=VSS}
+C {symbols/nfet_05v0.sym} 910 -160 0 0 {name=MBIASFB
 L=0.6u
 W=5u
 nf=1
@@ -180,18 +185,18 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1930 -780 2 0 {name=lbiasfbd sig_type=std_logic lab=FB_BUF}
-C {devices/lab_pin.sym} 1930 -690 0 0 {name=lbiasfbs sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1930 -720 0 0 {name=lbiasfbb sig_type=std_logic lab=VSS}
-C {symbols/ppolyf_u_2k_6p0.sym} 1720 -1180 0 0 {name=RrefEA
+C {devices/lab_pin.sym} 930 -220 2 0 {name=lbiasfbd sig_type=std_logic lab=FB_BUF}
+C {devices/lab_pin.sym} 930 -130 0 0 {name=lbiasfbs sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 930 -160 2 0 {name=lbiasfbb sig_type=std_logic lab=VSS}
+C {symbols/ppolyf_u_1k_6p0.sym} 720 -620 0 0 {name=RrefEA
 W=1e-6
-L=957.9e-6
-model=ppolyf_u_2k_6p0
+L=1944.26e-6
+model=ppolyf_u_1k_6p0
 spiceprefix=X
 m=1}
-C {devices/lab_pin.sym} 1700 -1180 0 0 {name=lbRrefEA sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1830 -1060 1 0 {name=lrrefeam sig_type=std_logic lab=IREF_EA}
-C {symbols/nfet_05v0.sym} 1740 -1060 2 0 {name=MREFEA
+C {devices/lab_pin.sym} 700 -620 0 0 {name=lbRrefEA sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 830 -500 1 0 {name=lrrefeam sig_type=std_logic lab=IREF_EA}
+C {symbols/nfet_05v0.sym} 740 -500 2 0 {name=MREFEA
 L=0.6u
 W=5u
 nf=1
@@ -205,9 +210,9 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1720 -1030 2 0 {name=lrefeas sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1720 -1060 2 0 {name=lrefeab sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 1960 -1180 2 0 {name=MEAOUTBUF
+C {devices/lab_pin.sym} 720 -470 2 0 {name=lrefeas sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 720 -500 2 0 {name=lrefeab sig_type=std_logic lab=VSS}
+C {symbols/nfet_05v0.sym} 960 -620 2 0 {name=MEAOUTBUF
 L=0.6u
 W=5u
 nf=1
@@ -221,10 +226,10 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1830 -1210 1 0 {name=leabufd sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 1980 -1180 2 0 {name=leabufg sig_type=std_logic lab=EAOUT}
-C {devices/lab_pin.sym} 1940 -1180 2 0 {name=leabufb sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 1920 -1060 0 0 {name=MBIASEA
+C {devices/lab_pin.sym} 830 -650 1 0 {name=leabufd sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 980 -620 2 0 {name=leabufg sig_type=std_logic lab=EAOUT}
+C {devices/lab_pin.sym} 940 -620 0 0 {name=leabufb sig_type=std_logic lab=VSS}
+C {symbols/nfet_05v0.sym} 920 -500 0 0 {name=MBIASEA
 L=0.6u
 W=5u
 nf=1
@@ -238,10 +243,10 @@ sa=0 sb=0 sd=0
 model=nfet_05v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 1940 -1120 2 0 {name=lbiaseadaux sig_type=std_logic lab=EAOUT_BUF}
-C {devices/lab_pin.sym} 1940 -1030 0 0 {name=lbiaseas sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1940 -1060 2 0 {name=lbiaseab sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 2610 -860 0 0 {name=MIN1
+C {devices/lab_pin.sym} 940 -560 2 0 {name=lbiaseadaux sig_type=std_logic lab=EAOUT_BUF}
+C {devices/lab_pin.sym} 940 -470 0 0 {name=lbiaseas sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 940 -500 2 0 {name=lbiaseab sig_type=std_logic lab=VSS}
+C {symbols/nfet_06v0.sym} 1370 -320 0 0 {name=MIN1
 L=3u
 W=20u
 nf=1
@@ -252,10 +257,10 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=nfet_05v0
+model=nfet_06v0
 spiceprefix=X
 }
-C {symbols/nfet_05v0.sym} 3000 -860 2 0 {name=MIN2
+C {symbols/nfet_06v0.sym} 1760 -320 2 0 {name=MIN2
 L=3u
 W=20u
 nf=1
@@ -266,10 +271,10 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=nfet_05v0
+model=nfet_06v0
 spiceprefix=X
 }
-C {symbols/pfet_05v0.sym} 2650 -1100 2 0 {name=MLOAD1
+C {symbols/pfet_06v0.sym} 1410 -560 2 0 {name=MLOAD1
 L=3u
 W=10u
 nf=1
@@ -280,10 +285,10 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=pfet_05v0
+model=pfet_06v0
 spiceprefix=X
 }
-C {symbols/pfet_05v0.sym} 2960 -1100 0 0 {name=MLOAD2
+C {symbols/pfet_06v0.sym} 1720 -560 0 0 {name=MLOAD2
 L=3u
 W=10u
 nf=1
@@ -294,10 +299,10 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=pfet_05v0
+model=pfet_06v0
 spiceprefix=X
 }
-C {symbols/pfet_05v0.sym} 3390 -1040 0 0 {name=MPASS
+C {symbols/pfet_06v0.sym} 2150 -500 0 0 {name=MPASS
 L=0.55u
 W=90u
 nf=30
@@ -308,31 +313,31 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=pfet_05v0
+model=pfet_06v0
 spiceprefix=X
 }
-C {symbols/cap_mim_2f0fF.sym} 3330 -920 3 0 {name=Cc
+C {symbols/cap_mim_2f0fF.sym} 2090 -380 3 0 {name=Cc
 W=38.6e-6
 L=38.6e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1}
-C {symbols/ppolyf_u_2k_6p0.sym} 3410 -860 0 0 {name=R1
+C {symbols/ppolyf_u_1k_6p0.sym} 2170 -320 0 0 {name=R1
 W=2e-6
-L=171.40e-6
-model=ppolyf_u_2k_6p0
+L=345.30e-6
+model=ppolyf_u_1k_6p0
 spiceprefix=X
 m=1}
-C {devices/lab_pin.sym} 3390 -860 0 0 {name=lbR1 sig_type=std_logic lab=VSS}
-C {symbols/ppolyf_u_2k_6p0.sym} 3410 -740 0 0 {name=R2
+C {devices/lab_pin.sym} 2150 -320 0 0 {name=lbR1 sig_type=std_logic lab=VSS}
+C {symbols/ppolyf_u_1k_6p0.sym} 2170 -200 0 0 {name=R2
 W=2e-6
-L=97.85e-6
-model=ppolyf_u_2k_6p0
+L=197.24e-6
+model=ppolyf_u_1k_6p0
 spiceprefix=X
 m=1}
-C {devices/lab_pin.sym} 3390 -740 0 0 {name=lbR2 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 1970 -870 2 0 {name=lfb sig_type=std_logic lab=FB}
-C {symbols/pfet_05v0.sym} 2650 -970 2 0 {name=MCASC1
+C {devices/lab_pin.sym} 2150 -200 0 0 {name=lbR2 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 970 -310 2 0 {name=lfb sig_type=std_logic lab=FB}
+C {symbols/pfet_06v0.sym} 1410 -430 2 0 {name=MCASC1
 L=0.55u
 W=5u
 nf=1
@@ -343,13 +348,13 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=pfet_05v0
+model=pfet_06v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 2810 -970 1 0 {name=lcasc1g sig_type=std_logic lab=EAREF}
-C {devices/lab_pin.sym} 2630 -1030 2 0 {name=lcasc1s sig_type=std_logic lab=CASCB1}
-C {devices/lab_pin.sym} 2630 -970 0 0 {name=lcasc1b sig_type=std_logic lab=VIN}
-C {symbols/pfet_05v0.sym} 2960 -970 0 0 {name=MCASC2
+C {devices/lab_pin.sym} 1570 -430 1 0 {name=lcasc1g sig_type=std_logic lab=EAREF}
+C {devices/lab_pin.sym} 1390 -490 2 0 {name=lcasc1s sig_type=std_logic lab=CASCB1}
+C {devices/lab_pin.sym} 1390 -430 0 0 {name=lcasc1b sig_type=std_logic lab=VIN}
+C {symbols/pfet_06v0.sym} 1720 -430 0 0 {name=MCASC2
 L=0.55u
 W=5u
 nf=1
@@ -360,47 +365,47 @@ as="'int((nf+2)/2) * W/nf * 0.18u'"
 ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
 nrd="'0.18u / W'" nrs="'0.18u / W'"
 sa=0 sb=0 sd=0
-model=pfet_05v0
+model=pfet_06v0
 spiceprefix=X
 }
-C {devices/lab_pin.sym} 2980 -1030 0 0 {name=lcasc2s sig_type=std_logic lab=CASCB2}
-C {devices/lab_pin.sym} 2980 -970 2 0 {name=lcasc2b sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 2500 -800 0 0 {name=lvisual2 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 2500 -620 2 0 {name=lvisual3 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2500 -650 0 0 {name=lvisual4 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2800 -620 0 0 {name=lvisual5 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2800 -650 0 0 {name=lvisual6 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2630 -860 2 0 {name=lvisual7 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2980 -860 0 0 {name=lvisual8 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2630 -1130 2 0 {name=lvisual9 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 2630 -1100 0 0 {name=lvisual10 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 2980 -1130 0 0 {name=lvisual11 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 2980 -1100 2 0 {name=lvisual12 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 3410 -1040 2 0 {name=lvisual15 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 3410 -710 0 0 {name=lvisual18 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 2800 -760 0 0 {name=lvisual26 sig_type=std_logic lab=TAIL}
-C {devices/lab_pin.sym} 2430 -860 0 0 {name=lvisual29 sig_type=std_logic lab=FB}
-C {devices/lab_pin.sym} 2810 -1100 1 0 {name=lvisual34 sig_type=std_logic lab=CASCB1}
-C {devices/lab_pin.sym} 3410 -800 0 0 {name=lvisual28 sig_type=std_logic lab=FB}
-C {devices/lab_pin.sym} 3180 -860 2 0 {name=lvrefp1 sig_type=std_logic lab=VREF}
-C {devices/lab_pin.sym} 2810 -1240 1 0 {name=lvisual30 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 3160 -1330 0 0 {name=lcasc1 sig_type=std_logic lab=EAOUT}
-C {devices/lab_pin.sym} 3410 -1110 1 0 {name=lvisual14 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 3100 -920 1 0 {name=lcasc2d sig_type=std_logic lab=EAOUT}
-C {devices/lab_pin.sym} 2680 -650 1 0 {name=lvisual23 sig_type=std_logic lab=IREF}
-C {devices/lab_pin.sym} 3750 -890 0 0 {name=lenvnd1 sig_type=std_logic lab=ENB_5V}
-C {devices/lab_pin.sym} 3790 -920 1 0 {name=lvisual13 sig_type=std_logic lab=VOUT}
-C {devices/ipin.sym} 1500 -1600 0 0 {name=p1 lab=VIN}
-C {devices/ipin.sym} 1500 -1560 0 0 {name=p2 lab=VREF}
-C {devices/ipin.sym} 1500 -1520 0 0 {name=p3 lab=EN}
-C {devices/opin.sym} 1500 -1480 0 0 {name=p4 lab=VOUT}
-C {devices/opin.sym} 1500 -1440 0 0 {name=p5 lab=FB_BUF}
-C {devices/opin.sym} 1500 -1400 0 0 {name=p6 lab=EAOUT_BUF}
-C {devices/iopin.sym} 1500 -1360 0 0 {name=p7 lab=VSS}
-C {ldo_levelshift.sym} 2650 -1500 0 0 {name=xls}
-C {devices/lab_pin.sym} 2500 -1520 0 0 {name=lls0 sig_type=std_logic lab=EN}
-C {devices/lab_pin.sym} 2500 -1500 0 0 {name=lls1 sig_type=std_logic lab=VIN}
-C {devices/lab_pin.sym} 2800 -1520 2 0 {name=lls2 sig_type=std_logic lab=EN_5V}
-C {devices/lab_pin.sym} 2800 -1500 2 0 {name=lls3 sig_type=std_logic lab=ENB_5V}
-C {devices/lab_pin.sym} 2800 -1480 2 0 {name=lls4 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 3160 -1520 0 0 {name=lenpassvin sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1740 -490 0 0 {name=lcasc2s sig_type=std_logic lab=CASCB2}
+C {devices/lab_pin.sym} 1740 -430 2 0 {name=lcasc2b sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1260 -260 0 0 {name=lvisual2 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1260 -80 2 0 {name=lvisual3 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1260 -110 0 0 {name=lvisual4 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1560 -80 0 0 {name=lvisual5 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1560 -110 0 0 {name=lvisual6 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1390 -320 2 0 {name=lvisual7 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1740 -320 0 0 {name=lvisual8 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1390 -590 2 0 {name=lvisual9 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1390 -560 0 0 {name=lvisual10 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1740 -590 0 0 {name=lvisual11 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1740 -560 2 0 {name=lvisual12 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 2170 -500 2 0 {name=lvisual15 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 2170 -170 0 0 {name=lvisual18 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1560 -220 0 0 {name=lvisual26 sig_type=std_logic lab=TAIL}
+C {devices/lab_pin.sym} 1190 -320 0 0 {name=lvisual29 sig_type=std_logic lab=FB}
+C {devices/lab_pin.sym} 1570 -560 1 0 {name=lvisual34 sig_type=std_logic lab=CASCB1}
+C {devices/lab_pin.sym} 2170 -260 0 0 {name=lvisual28 sig_type=std_logic lab=FB}
+C {devices/lab_pin.sym} 1940 -320 2 0 {name=lvrefp1 sig_type=std_logic lab=VREF}
+C {devices/lab_pin.sym} 1570 -700 1 0 {name=lvisual30 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1920 -790 0 0 {name=lcasc1 sig_type=std_logic lab=EAOUT}
+C {devices/lab_pin.sym} 2170 -570 1 0 {name=lvisual14 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1860 -380 1 0 {name=lcasc2d sig_type=std_logic lab=EAOUT}
+C {devices/lab_pin.sym} 1440 -110 1 0 {name=lvisual23 sig_type=std_logic lab=IREF}
+C {devices/lab_pin.sym} 2510 -350 0 0 {name=lenvnd1 sig_type=std_logic lab=ENB_5V}
+C {devices/lab_pin.sym} 2550 -380 1 0 {name=lvisual13 sig_type=std_logic lab=VOUT}
+C {devices/ipin.sym} 260 -1060 0 0 {name=p1 lab=VIN}
+C {devices/ipin.sym} 260 -1020 0 0 {name=p2 lab=VREF}
+C {devices/ipin.sym} 260 -980 0 0 {name=p3 lab=EN}
+C {devices/opin.sym} 260 -940 0 0 {name=p4 lab=VOUT}
+C {devices/opin.sym} 260 -900 0 0 {name=p5 lab=FB_BUF}
+C {devices/opin.sym} 260 -860 0 0 {name=p6 lab=EAOUT_BUF}
+C {devices/iopin.sym} 260 -820 0 0 {name=p7 lab=VSS}
+C {ldo_levelshift.sym} 1410 -960 0 0 {name=xls}
+C {devices/lab_pin.sym} 1260 -980 0 0 {name=lls0 sig_type=std_logic lab=EN}
+C {devices/lab_pin.sym} 1260 -960 0 0 {name=lls1 sig_type=std_logic lab=VIN}
+C {devices/lab_pin.sym} 1560 -980 2 0 {name=lls2 sig_type=std_logic lab=EN_5V}
+C {devices/lab_pin.sym} 1560 -960 2 0 {name=lls3 sig_type=std_logic lab=ENB_5V}
+C {devices/lab_pin.sym} 1560 -940 2 0 {name=lls4 sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 1920 -980 0 0 {name=lenpassvin sig_type=std_logic lab=VIN}
