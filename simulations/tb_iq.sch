@@ -58,6 +58,15 @@ let iq = -i(Vvin)
 let iq_ua = iq*1e6
 echo RESULT iq_uA $&iq_ua
 print iq
+* test buffers: FB_BUF / EAOUT_BUF should sit one Vgs below FB / EAOUT
+let vfb = v(x1.fb)
+let vfbbuf = v(fb_buf)
+let veaout = v(x1.eaout)
+let veaoutbuf = v(eaout_buf)
+echo RESULT fb_V $&vfb
+echo RESULT fbbuf_V $&vfbbuf
+echo RESULT eaout_V $&veaout
+echo RESULT eaoutbuf_V $&veaoutbuf
 alter Ven dc = 0
 op
 let ishdn = -i(Vvin)

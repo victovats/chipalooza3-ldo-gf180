@@ -89,8 +89,8 @@ capacitor is a MIM `cap_mim_2f0fF`. `EN` comes from the harness's 3.3V logic, so
 internal 3.3V-to-`VIN` level shifter (`xschem/ldo_levelshift.sch`).
 
 When `EN` is low the whole block is shut down, not just the pass device: a PMOS
-switch (`MBIASSW`) disconnects the bias resistors `Rref`, `RrefFB` and `RrefEA`
-from `VIN`, NMOS pulldowns (`MPDREF`, `MPDFB`, `MPDEA`) clamp the bias nodes to
+switch (`MBIASSW`) disconnects the bias resistors `Rref` and `RrefEA`
+from `VIN`, NMOS pulldowns (`MPDREF`, `MPDEA`) clamp the bias nodes to
 `VSS`, and `MENPASSOFF` holds the pass-transistor gate at `VIN`. `VOUT` is then
 discharged to 0V by the feedback divider and the block draws only leakage from
 `VIN` (sub-nA in simulation).
@@ -100,7 +100,7 @@ discharged to 0V by the feedback divider and the block draws only leakage from
 | Instance | Value | Device | W x L |
 |---|---|---|---|
 | `Rref` (error-amp tail bias) | 200 kOhm | `ppolyf_u_1k_6p0` | 1 x 194.27 um |
-| `RrefFB`, `RrefEA` (test-buffer bias) | 2 MOhm | `ppolyf_u_1k_6p0` | 1 x 1944.26 um |
+| `RrefEA` (bias for both test buffers, mirrored by `MBIASFB` / `MBIASEA`) | 2 MOhm | `ppolyf_u_1k_6p0` | 1 x 1944.26 um |
 | `R1` / `R2` (feedback divider) | 175 / 100 kOhm | `ppolyf_u_1k_6p0` | 2 x 345.30 / 2 x 197.24 um |
 | `Cc` (Miller compensation) | 3.0 pF | `cap_mim_2f0fF` | 38.6 x 38.6 um |
 
@@ -124,7 +124,7 @@ sweep and metric used.
 |---|---|---|---|
 | Output voltage | 3.201V - 3.399V | DC, 5 mA current-sink load | 3.309V |
 | Dropout voltage | max 300 mV | DC sweep `VIN` 3.3 -> 5.5V, 10 mA current-sink load | 152 mV (262 mV worst corner) |
-| Quiescent current | max 100 uA | DC operating point, no load (0 mA) | 62 uA (90 uA worst corner) |
+| Quiescent current | max 100 uA | DC operating point, no load (0 mA) | 60 uA (87 uA worst corner) |
 | Line regulation | max 1% | DC sweep `VIN` 4.5 -> 5.5V, 5 mA current-sink load | 0.042% (0.085% worst corner) |
 | Load regulation | max 1% | DC sweep of current-sink load 0 -> 10 mA, `VIN` = 5.0V | 0.269% (0.73% worst corner) |
 | PSRR (low frequency) | min 40 dB | AC small-signal on `VIN`, 5 mA current-sink load | 59 dB at 100 Hz (53 dB worst corner) |
@@ -144,6 +144,9 @@ current at fast MOS / 110 C (leakage).
 | `simulations/run_sims.py` | Runs all testbenches, plots results, checks against spec |
 | `simulations/results/` | Result plots and summary table |
 | `netlist/schematic/ldo.spice` | Exported schematic netlist |
+| `layout/build_layout.py` | Generates the layout (magic), runs DRC, extraction and LVS |
+| `layout/mag/`, `layout/gds/ldo.gds` | Layout (magic cells) and GDS, 286.8 x 130.9 um |
+| `layout/lvs/` | Extracted netlist and netgen LVS report (`comp.out`) |
 
 ## 9. Reproducing the Results
 
@@ -156,6 +159,13 @@ cd simulations
 python3 run_sims.py --corners
 ```
 
+Layout, DRC and LVS (magic and netgen, also in IIC-OSIC-TOOLS):
+
+```sh
+cd layout
+python3 build_layout.py
+```
+
 Testbenches can also be opened and simulated individually in xschem
 (`cd simulations && xschem tb_line_reg.sch`). Schematics reference only files
 in this repository or in the PDK via `$PDK_ROOT`.
@@ -163,7 +173,7 @@ in this repository or in the PDK via `$PDK_ROOT`.
 ## 10. Open Items
 
 - Quiescent current has ~10% margin at the fast-resistor / 110 C corner
-  (90 uA vs 100 uA); bias currents are set by poly resistors from `VIN`.
+  (87 uA vs 100 uA); bias currents are set by poly resistors from `VIN`.
 - Add an AC loop-gain / phase-margin testbench across corners (current
   stability evidence: load- and line-step transients).
 - Load-step overshoot (+313 mV for a 0-10 mA step in 1 us) is not yet

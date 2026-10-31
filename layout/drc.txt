@@ -1,0 +1,9 @@
+8  Poly resistor spacing to unrelated poly < 120 (PRES/LRES.4)
+      4.02 73.475 4.22 73.79
+      4.02 73.475 4.22 73.79
+      57.82 73.475 58.02 73.79
+      57.82 73.475 58.02 73.79
+      99.84 16.055 100.04 16.37
+1  MiM bottom plate surrounds contact < 0.4um (MIMTM.2)
+      137.22 111.76 138.28 111.77
+TOTAL 9

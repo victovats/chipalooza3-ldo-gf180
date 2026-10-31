@@ -11,7 +11,7 @@ T {Buffer to test feedback potential} 710 -430 0 0 0.4 0.4 {}
 T {-Uses pdk resistors and caps
 -pdk transistors
 } 190 -670 0 0 0.4 0.4 {}
-N 750 -160 890 -160 {lab=IREF_FB}
+N 750 -160 890 -160 {lab=IREF_EA}
 N 1740 -530 1740 -460 {lab=CASCB2}
 N 1390 -530 1390 -460 {lab=CASCB1}
 N 1430 -560 1700 -560 {lab=CASCB1}
@@ -35,9 +35,6 @@ N 1780 -320 1820 -320 {lab=VREF}
 N 1820 -320 1850 -320 {lab=VREF}
 N 760 -500 900 -500 {lab=IREF_EA}
 N 730 -650 940 -650 {lab=VIN}
-N 710 -280 710 -190 {lab=IREF_FB}
-N 710 -190 750 -190 {lab=IREF_FB}
-N 750 -190 750 -160 {lab=IREF_FB}
 N 930 -280 930 -190 {lab=FB_BUF}
 N 1190 -320 1350 -320 {lab=FB}
 N 1850 -320 1940 -320 {lab=VREF}
@@ -131,31 +128,8 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 2550 -320 0 0 {name=lendcs sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 2550 -350 2 0 {name=lendcb sig_type=std_logic lab=VSS}
-C {symbols/ppolyf_u_1k_6p0.sym} 710 -310 0 0 {name=RrefFB
-W=1e-6
-L=1944.26e-6
-model=ppolyf_u_1k_6p0
-spiceprefix=X
-m=1}
-C {devices/lab_pin.sym} 690 -310 0 0 {name=lbRrefFB sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 820 -340 1 0 {name=lrreffbp sig_type=std_logic lab=VIN}
-C {symbols/nfet_05v0.sym} 730 -160 2 0 {name=MREFFB
-L=0.6u
-W=5u
-nf=1
-m=1
-ad="'int((nf+1)/2) * W/nf * 0.18u'"
-pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
-as="'int((nf+2)/2) * W/nf * 0.18u'"
-ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
-nrd="'0.18u / W'" nrs="'0.18u / W'"
-sa=0 sb=0 sd=0
-model=nfet_05v0
-spiceprefix=X
-}
-C {devices/lab_pin.sym} 820 -160 1 0 {name=lreffbg sig_type=std_logic lab=IREF_FB}
-C {devices/lab_pin.sym} 710 -130 2 0 {name=lreffbs sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 710 -160 0 0 {name=lreffbb sig_type=std_logic lab=VSS}
+C {devices/lab_pin.sym} 820 -160 1 0 {name=lreffbg sig_type=std_logic lab=IREF_EA}
 C {symbols/nfet_05v0.sym} 950 -310 2 0 {name=MFBBUF
 L=0.6u
 W=5u
@@ -410,7 +384,6 @@ C {devices/lab_pin.sym} 1560 -960 2 0 {name=lls3 sig_type=std_logic lab=ENB_5V}
 C {devices/lab_pin.sym} 1560 -940 2 0 {name=lls4 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 1920 -980 0 0 {name=lenpassvin sig_type=std_logic lab=VIN}
 C {devices/lab_pin.sym} 1260 -230 0 0 {name=lbo1 sig_type=std_logic lab=VIN_BIAS}
-C {devices/lab_pin.sym} 710 -340 0 0 {name=lbo2 sig_type=std_logic lab=VIN_BIAS}
 C {devices/lab_pin.sym} 720 -650 0 0 {name=lbo3 sig_type=std_logic lab=VIN_BIAS}
 C {symbols/pfet_06v0.sym} 300 -1000 0 0 {name=MBIASSW
 L=0.6u
@@ -448,24 +421,6 @@ C {devices/lab_pin.sym} 320 -890 2 0 {name=lbo8 sig_type=std_logic lab=IREF}
 C {devices/lab_pin.sym} 320 -830 2 0 {name=lbo9 sig_type=std_logic lab=VSS}
 C {devices/lab_pin.sym} 280 -860 0 0 {name=lbo10 sig_type=std_logic lab=ENB_5V}
 C {devices/lab_pin.sym} 320 -860 2 0 {name=lbo11 sig_type=std_logic lab=VSS}
-C {symbols/nfet_05v0.sym} 420 -860 0 0 {name=MPDFB
-L=0.6u
-W=1u
-nf=1
-m=1
-ad="'int((nf+1)/2) * W/nf * 0.18u'"
-pd="'2*int((nf+1)/2) * (W/nf + 0.18u)'"
-as="'int((nf+2)/2) * W/nf * 0.18u'"
-ps="'2*int((nf+2)/2) * (W/nf + 0.18u)'"
-nrd="'0.18u / W'" nrs="'0.18u / W'"
-sa=0 sb=0 sd=0
-model=nfet_05v0
-spiceprefix=X
-}
-C {devices/lab_pin.sym} 440 -890 2 0 {name=lbo12 sig_type=std_logic lab=IREF_FB}
-C {devices/lab_pin.sym} 440 -830 2 0 {name=lbo13 sig_type=std_logic lab=VSS}
-C {devices/lab_pin.sym} 400 -860 0 0 {name=lbo14 sig_type=std_logic lab=ENB_5V}
-C {devices/lab_pin.sym} 440 -860 2 0 {name=lbo15 sig_type=std_logic lab=VSS}
 C {symbols/nfet_05v0.sym} 540 -860 0 0 {name=MPDEA
 L=0.6u
 W=1u
