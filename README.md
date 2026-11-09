@@ -102,16 +102,21 @@ discharged to 0V by the feedback divider and the block draws only leakage from
 | `Rref` (error-amp tail bias) | 200 kOhm | `ppolyf_u_1k_6p0` | 1 x 194.27 um |
 | `RrefEA` (bias for both test buffers, mirrored by `MBIASFB` / `MBIASEA`) | 2 MOhm | `ppolyf_u_1k_6p0` | 1 x 1944.26 um |
 | `R1` / `R2` (feedback divider) | 175 / 100 kOhm | `ppolyf_u_1k_6p0` | 2 x 345.30 / 2 x 197.24 um |
-| `Cc` (Miller compensation) | 3.0 pF | `cap_mim_2f0fF` | 38.6 x 38.6 um |
+| `Cc` (Miller compensation) | 3.0 pF | `cap_mim_2f0fF` | 27.35 x 54.5 um |
 
 `R1` and `R2` use the same resistor type and width, so their ratio (which sets
 `VOUT`) is independent of sheet-resistance and width variation and temperature.
 
-## 7. Simulation Results (schematic, pre-layout)
+## 7. Simulation Results (schematic and final layout)
 
-Typical corner, 27 C, `VIN` = 5.0V, `VREF` = 1.2V, `EN` = 3.3V. Full results,
-plots and the process/temperature corner table are in
-[`simulations/results/summary.md`](simulations/results/summary.md).
+Typical corner, 27 C, `VIN` = 5.0V, `VREF` = 1.2V, `EN` = 3.3V; the value in
+brackets is the worst of 45 process/temperature corners. "Schematic" is the
+pre-layout circuit; "Final layout" is the v2 layout's RC-extracted netlist (every
+wire's resistance and capacitance included) run through the same testbenches.
+Full results, plots and corner tables:
+[`simulations/results/summary.md`](simulations/results/summary.md) (schematic) and
+[`simulations/results_v2_pex_rc/summary.md`](simulations/results_v2_pex_rc/summary.md)
+(final layout).
 
 All testbenches drive the LDO with ideal sources: `VIN` and `VREF` are ideal
 voltage sources, `EN` is an ideal 3.3V source, and `VOUT` is loaded by an ideal
@@ -120,19 +125,21 @@ can rest at 0V when off) in parallel with a 2 pF capacitor. Every plot in
 `simulations/results/` carries a "Test conditions" panel with the exact load,
 sweep and metric used.
 
-| Parameter | Spec | How it is tested | Simulated |
-|---|---|---|---|
-| Output voltage | 3.201V - 3.399V | DC, 5 mA current-sink load | 3.309V |
-| Dropout voltage | max 300 mV | DC sweep `VIN` 3.3 -> 5.5V, 10 mA current-sink load | 152 mV (262 mV worst corner) |
-| Quiescent current | max 100 uA | DC operating point, no load (0 mA) | 60 uA (87 uA worst corner) |
-| Line regulation | max 1% | DC sweep `VIN` 4.5 -> 5.5V, 5 mA current-sink load | 0.042% (0.085% worst corner) |
-| Load regulation | max 1% | DC sweep of current-sink load 0 -> 10 mA, `VIN` = 5.0V | 0.269% (0.73% worst corner) |
-| PSRR (low frequency) | min 40 dB | AC small-signal on `VIN`, 5 mA current-sink load | 59 dB at 100 Hz (53 dB worst corner) |
-| Shutdown current | - | DC operating point, `EN` = 0V, no load | 0.19 nA (3.3 nA worst corner) |
+| Parameter | Spec | How it is tested | Schematic | Final layout (v2, RC-extracted) |
+|---|---|---|---|---|
+| Output voltage | 3.201V - 3.399V | DC, 5 mA current-sink load | 3.309V (3.308 - 3.312V) | 3.309V (3.308 - 3.312V) |
+| Dropout voltage | max 300 mV | DC sweep `VIN` 3.3 -> 5.5V, 10 mA current-sink load | 152 mV (262 mV) | 162 mV (273 mV) |
+| Quiescent current | max 100 uA | DC operating point, no load (0 mA) | 60 uA (87 uA) | 60 uA (87 uA) |
+| Line regulation | max 1% | DC sweep `VIN` 4.5 -> 5.5V, 5 mA current-sink load | 0.042% (0.085%) | 0.042% (0.084%) |
+| Load regulation | max 1% | DC sweep of current-sink load 0 -> 10 mA, `VIN` = 5.0V | 0.269% (0.74%) | 0.271% (0.75%) |
+| PSRR (low frequency) | min 40 dB | AC small-signal on `VIN`, 5 mA current-sink load | 59 dB at 100 Hz (53 dB) | 59 dB at 100 Hz (53 dB) |
+| Shutdown current | - | DC operating point, `EN` = 0V, no load | 0.19 nA (3.3 nA) | 1.3 nA (4.5 nA) |
+| Phase margin, 2 pF load | - | Loop gain, loads 0 - 10 mA, MOS corners, -40/27/110 C | 70.6 deg worst | 64.4 deg worst |
 
-Worst corners: dropout at slow MOS / slow resistors / 110 C; quiescent current
-and load regulation at fast MOS / fast resistors / 110 C; shutdown
-current at fast MOS / 110 C (leakage).
+All specs pass in every corner, both before and after layout. Worst corners:
+dropout at slow MOS / slow resistors / 110 C; quiescent current and load
+regulation at fast MOS / fast resistors / 110 C; shutdown current at fast MOS /
+110 C (leakage); phase margin at fs / 110 C / no load.
 
 ## 8. Repository Layout
 
@@ -144,14 +151,17 @@ current at fast MOS / 110 C (leakage).
 | `simulations/run_sims.py` | Runs all testbenches, plots results, checks against spec |
 | `simulations/results/` | Result plots and summary table (schematic) |
 | `simulations/stability.py` | Loop-gain / phase-margin sweep |
-| `simulations/results_pex_c/`, `results_pex_rc/` | Post-layout results on the extracted C / RC netlists |
+| `simulations/results_pex_c/`, `results_pex_rc/` | Post-layout results, first (v1) layout, extracted C / RC netlists |
+| `simulations/results_v2_pex_c/`, `results_v2_pex_rc/` | Post-layout results, final (v2) layout, extracted C / RC netlists |
 | `simulations/README.md` | Schematic simulation results |
 | `netlist/schematic/ldo.spice` | Exported schematic netlist |
 | `layout/build_layout.py`, `gl_devices.py` | Generates the layout (gLayout transistors + magic), runs DRC, extraction and LVS |
-| `layout/mag/`, `layout/gds/ldo.gds` | Layout (magic cells) and GDS, 188.3 x 146.9 um |
+| `layout/mag/`, `layout/gds/ldo.gds` | First (v1) layout (magic cells) and GDS, 188.3 x 146.9 um |
 | `layout/lvs/` | Extracted netlist and netgen LVS report (`comp.out`) |
 | `layout/pex/` | Parasitic extraction (C / RC) and EM/IR check |
-| `layout/README.md` | Layout and post-layout results |
+| `layout/README.md` | First (v1) layout and its post-layout results |
+| `layout/v2/` | Final (v2) layout: generator scripts, `ldo_v2.gds` (184.1 x 121.4 um), LVS, PEX, EM/IR |
+| `layout/v2/README.md` | Final layout: floorplan, screenshots, verification and post-layout results |
 
 ## 9. Reproducing the Results
 
@@ -185,20 +195,34 @@ python3 run_sims.py --pex rc
 python3 stability.py --pex rc
 ```
 
+The final (v2) layout is built, verified and extracted with the scripts in
+`layout/v2/`; the steps are in [`layout/v2/README.md`](layout/v2/README.md#7-reproduce).
+
 Testbenches can also be opened and simulated individually in xschem
 (`cd simulations && xschem tb_line_reg.sch`). Schematics reference only files
 in this repository or in the PDK via `$PDK_ROOT`.
 
 ## 10. Open Items
 
-- Quiescent current has ~13% margin at the fast-resistor / 110 C corner
-  (87 uA vs 100 uA); bias currents are set by poly resistors from `VIN`.
-- Output capacitance on `VOUT` is limited for 45 deg phase margin
-  (post-layout, worst corner): ~12 pF at no load, ~28 pF above 10 uA,
-  ~100 pF above 100 uA. Adaptive biasing of the error amplifier would relax this.
-- Load-step response (-244 / +340 mV post-layout for a 0-10 mA step in 1 us)
-  is not specified; loads with fast (ns) current edges need their own decoupling.
-- Harness integration: slot number not yet assigned. The block must be placed
-  in the `slot<N>_wrapper` template (1274.3 x 412.7 um) and delivered as
-  `gds/slot_<N>.gds` with top cell `slot_<N>`, then DRC/LVS re-run on the
+- **Harness integration.** The slot number is not assigned yet. The pin positions
+  of all 18 slots are already extracted
+  ([`layout/v2/harness_slot_pins.json`](layout/v2/harness_slot_pins.json)), and the
+  v2 block's VIN / VSS rails run edge to edge so they can join the harness supply
+  from either side. Once a slot is assigned, the block goes into the
+  `slot<N>_wrapper` template (1274.3 x 412.7 um), is delivered as
+  `gds/slot_<N>.gds` with top cell `slot_<N>`, and DRC/LVS are re-run on the
   wrapped cell.
+- **Fill exclusion.** The harness adds dummy metal and poly fill over the whole
+  chip. The input pair, `Cc` and `R1`/`R2` still need fill-exclusion marker
+  layers so the fill does not disturb their matching or capacitance.
+- **Quiescent-current margin.** 87 uA against the 100 uA limit at the fast-resistor /
+  110 C corner (~13% margin, schematic and final layout alike); the bias currents
+  are set by poly resistors from `VIN`.
+- **Large output capacitance.** With 2 pF on `VOUT` the worst-case phase margin
+  is 64 deg. With 50 pF it drops to 26 deg at no load (worst corner); at the
+  typical corner it is above 45 deg only from about 0.1 mA of load. Loads with
+  large decoupling capacitors need a minimum load current, or adaptive biasing
+  of the error amplifier.
+- **Fast load steps.** The 0 - 10 mA load step in 1 us gives -249 / +343 mV on
+  the final layout. This is not specified; loads with fast (ns) current edges
+  need their own decoupling.

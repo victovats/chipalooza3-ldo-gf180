@@ -5,6 +5,14 @@ the first one ([../README.md](../README.md)) to make the block smaller and
 better matched. Same schematic; only Cc's plate shape changed (same area,
 +0.1 % capacitance).
 
+Related documents:
+
+| README | What it covers |
+|---|---|
+| [Project README](../../README.md) | The LDO block: pins, specs, test plan, final results, open items |
+| [Simulation README](../../simulations/README.md) | Schematic (pre-layout) simulations and testbenches |
+| [v1 layout README](../README.md) | The first layout and its post-layout results |
+
 | | v1 | **v2** |
 |---|---|---|
 | Block (incl. test buffers, buses) | 188.3 × 146.9 µm (27 660 µm²) | **184.1 × 121.4 µm (22 350 µm², −19 %)** |
