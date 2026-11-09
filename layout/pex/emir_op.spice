@@ -1,11 +1,11 @@
-* EM/IR operating point: RC-extracted LDO at full load
+* EM/IR operating point: RC-extracted v2 LDO at full load
 .include /foss/pdks/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice cap_mim
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice mimcap_typical
 .include ldo_pex_rc.spice
-x1 VIN VOUT VSS VREF EN FB_BUF EAOUT_BUF ldo_flat
+x1 EAOUT_BUF FB_BUF EN VREF VIN VOUT VSS ldo_flat
 Vvin VIN 0 5
 Vvss VSS 0 0
 Vvref VREF 0 1.2

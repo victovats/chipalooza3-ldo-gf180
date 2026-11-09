@@ -1,322 +1,243 @@
-# Layout and Post-Layout Results
+# LDO layout v2 — compact, matched, fully wired
 
-Physical design of the capless LDO and its verification on the extracted layout. The
-schematic-only results are in [`../simulations/README.md`](../simulations/README.md).
+Second layout of the GF180MCU capless LDO (5 V → 3.3 V, 10 mA), built after
+the first one ([../layout_v1/README.md](../layout_v1/README.md)) to make the block smaller and
+better matched. Same schematic; only Cc's plate shape changed (same area,
++0.1 % capacitance).
 
-> A second, more compact and better-matched layout (v2: shared guard rings, 2-D common
-> centroid, Kelvin sense, edge-to-edge supply rails) is documented in
-> [`v2/README.md`](v2/README.md).
+Related documents:
 
-![full layout](doc/full_layout.png)
-
-| Item | Result |
+| README | What it covers |
 |---|---|
-| Block size | **188.3 × 146.9 µm** (27,700 µm²); devices fill 40 % of it |
-| DRC (official gf180mcuD KLayout deck) | **No geometry violations.** Only the block-level density checks (M1–M5.4, DCF.1b, MT.3, PL.8) are flagged; chip-level fill covers them. |
-| DRC (magic) | 9 flags, all inside PDK cells and not flagged by the KLayout deck: 8 × PRES/LRES.4 in the generated snake resistors, 1 × MIMTM.2 at the MIM cap |
-| LVS (netgen vs `netlist/schematic/ldo.spice`) | **Circuits match uniquely**, 31 = 31 devices, no property errors (dummy devices removed first, see below) |
-| Post-layout simulation (RC extraction) | All specs pass at typical and at the worst corners |
-| Post-layout stability | Phase margin ≥ 65.7° at every load and corner with 2 pF on VOUT |
-| EM (GF180 DRM §14.2 limits, 110 °C) | All checked elements pass |
-| IR drop at 10 mA | VIN 6.4 mV, VOUT 5.8 mV, VSS 1.0 mV |
+| [Project README](../README.md) | The LDO block: pins, specs, test plan, final results, open items |
+| [Simulation README](../simulations/README.md) | Schematic (pre-layout) simulations and testbenches |
+| [v1 layout README](../layout_v1/README.md) | The first layout (kept in `layout_v1/`) and its post-layout results |
 
-## Pins
-
-| Pin | Edge / layer | Notes |
+| | v1 | **v2** |
 |---|---|---|
-| VIN | top, metal5 bus 6 µm wide | 5.0 V supply; connect anywhere along the bus |
-| VOUT | top, metal5 bus 6 µm wide | 3.3 V output |
-| VSS | bottom, metal5 bus 4 µm wide | ground |
-| VREF | bottom edge, metal4 | 1.2 V reference input |
-| EN | bottom edge, metal4 | 3.3 V logic enable (high = on) |
-| FB_BUF, EAOUT_BUF | bottom edge, metal4 | test buffers (feedback node, error-amp output) |
+| Block (incl. test buffers, buses) | 188.3 × 146.9 µm (27 660 µm²) | **184.1 × 121.4 µm (22 350 µm², −19 %)** |
+| LDO core rectangle (no test buffers) | — | **124.0 × 95.6 µm** |
+| Guard rings | one per device | **two**: one p+ ring for every NMOS, one n-well for every PMOS but the pass device |
+| Input pair / mirror load | ABBA, 1 dummy per end | **2-D common centroid** (A B B A over B A A B), 2 dummies per end |
+| Supply | buses over the pass device | **VIN and VSS rails edge to edge** (a grid the slot can join from either side), VOUT bus to the VOUT pin, Kelvin sense line |
+| DRC (official KLayout deck) | clean | **clean** (whole-die density rules are met by chip-level fill) |
+| LVS (netgen vs the schematic) | match | **match, no property errors** |
+| Post-layout (RC-extracted), all 45 corners | all specs pass | **all specs pass** |
+| Worst-case phase margin (2 pF) | 65.7° | **64.4°** |
 
-## Floorplan
+All views below are mirrored top-to-bottom, the way the block sits in the
+Chipalooza slot: VSS rail on top, pass device with the VOUT bus and VIN rail at the
+bottom. Well / implant / marker layers are hidden so the wiring stays readable.
 
-Three rows, arranged by signal flow. The amplifier column runs up the right-hand side,
-directly under the Miller cap and the pass device.
+## 1. The block
 
-| Row | Contents (left → right) |
-|---|---|
-| Top | RrefEA (buffer bias, 2 MΩ) · R1/R2 feedback-divider array · Miller cap Cc (3 pF MIM) · routing corridor · pass device |
-| Middle (PMOS) | level shifter (MP1, MP2) · bias switch MBIASSW · EAOUT pull-up MENPASSOFF · cascodes MCASC1/2 · mirror load MLOAD1/2 |
-| Bottom (NMOS) | level shifter MN1/MN2 · enable pulldowns · test buffers · buffer-bias mirror · MPDREF · Rref · tail mirror MREF/MTAIL · input pair MIN1/2 |
+![v2 layout, labelled](doc/v2_labelled.png)
 
-- Cc sits right next to the pass device, so EAOUT (error-amp output → Cc → pass gates) and
-  VOUT are short.
-- Rref sits between its pulldown and the tail mirror it biases.
-- The middle and bottom rows are spread across the full width. The gaps between devices are
-  the corridors for the vertical wires.
+![v2 layout, all routing layers](doc/v2_overview.png)
 
-![EAOUT net](doc/eaout_net.png)
+Colour key for all screenshots: green = diffusion (COMP), red = poly, blue = metal1,
+amber = metal2, teal = metal3, purple = metal4, orange = metal5, grey = MIM top plate;
+small dark squares are contacts and vias.
 
-*The EAOUT net (red), traced from the layout: pass-device gates, Cc top plate, MCASC2 and MIN2
-drains, MENPASSOFF, and the EAOUT_BUF follower gate.*
-
-## Devices
-
-- **Transistors** come from [gLayout](https://github.com/ReaLLMASIC/gLayout) (`gl_devices.py`).
-  gLayout's GF180 setup only draws 3.3 V devices. Adding the DUALGATE (55/0) marker makes them
-  `pfet_06v0` / `nfet_06v0`, plus V5_XTOR (112/1) for the L = 0.6 µm `nfet_05v0`. Each converted
-  device was checked with the KLayout deck and with magic extraction.
-- **Poly resistors and the MIM cap** come from the PDK's magic generator. Snake segment lengths
-  are pre-compensated for magic's bend extraction, so the extracted r_length matches the
-  schematic.
-- **Pass device:** one block of 7 rows × 30 fingers × 3 µm (W = 630 µm, L = 0.55 µm) in a single
-  guard ring.
-
-### Matching
-
-| Group | Arrangement | Why it matters |
+| Block | What it is | Size (µm) |
 |---|---|---|
-| Input pair MIN1/MIN2 | dummy **A B B A** dummy, 2 × 10 µm fingers each | Mismatch becomes offset, × 2.75 into VOUT |
-| Mirror load MLOAD1/2 | dummy A B B A dummy | Current mismatch becomes offset |
-| Cascodes MCASC1/2 | dummy A B B A dummy | Symmetry of the error amp |
-| Tail mirror MREF/MTAIL | dummy A B B A dummy | Amplifier bias current |
-| Buffer bias mirror MREFEA → MBIASEA, MBIASFB | dummy **B A C C A B** dummy | Three devices on one centroid |
-| Feedback divider R1/R2 | D **A A B A B A B A B A A** D: 7 + 4 identical 2 × 49.33 µm units | The ratio sets VOUT. Both resistors centre on the same unit, and the ratio is exactly 7 : 4 whatever the sheet resistance. |
+| NMOS group | input pair MIN1/MIN2, tail mirror MREF/MTAIL, MPDREF, level-shifter MN1/MN2, MENDISCHARGE — one p+ ring | 56.5 × 37.8 |
+| PMOS group | mirror load MLOAD1/2, cascodes MCASC1/2, MENPASSOFF, level-shifter MP1/MP2, MBIASSW — one n-well and ring | 56.5 × 36.7 |
+| MPASS | pass transistor, 630 µm / 0.55 µm as 3 rows × 70 fingers | 83.0 × 20.5 |
+| Cc | 3 pF MIM Miller cap, 27.35 × 54.5 µm plate (as tall as the core column) | 29.8 × 55.7 |
+| Rref | amplifier bias resistor | 30.0 × 13.5 |
+| R1 / R2 | feedback divider, 13 interleaved unit resistors (D A A B A B A B A B A A D) | 33.2 × 57.4 |
+| Test buffers | RrefEA (2 MΩ, 30 segments), bias mirror MREFEA/MBIASEA/MBIASFB, MPDEA, followers MFBBUF / MEAOUTBUF — not part of the LDO | 44 × 88 |
 
-Common centroid cancels linear gradients along the row. Each matched group sits in one row at
-one height, so vertical gradients (for example heat from the pass device above) affect both
-halves equally. Dummy fingers are tied to the bulk.
+## 2. Floorplan
 
-### Input pair MIN1 / MIN2
+The core column holds the two transistor groups, 1.2 µm apart (the DRC minimum
+between the NMOS ring and the PMOS n-well, found by a DRC sweep). Rref sits right
+next to the tail mirror, Cc between the core and the pass-device gate, and the
+pass device spans the core and Cc columns so EAOUT runs straight up into its gate
+bar. R1/R2 sits beside the pass device with its VOUT end on the VOUT side. The test
+buffers stand apart on the left, centred on the LDO.
 
-Dummy – A – B – B – A – dummy: four 10 µm fingers between two dummies, all in one guard ring.
+![placement before wiring](doc/v2_placement.png)
 
-![input pair](doc/input_pair_ABBA.png)
+## 3. Device groups (shared rings, tap rows, diffusion sharing, common centroid)
 
-### Mirror load MLOAD1 / MLOAD2
+Built by [core_groups.py](core_groups.py) with gLayout and converted to 6 V
+devices (DUALGATE; V5_XTOR only around the L = 0.6 µm NMOS):
 
-Same A B B A pattern for the PMOS current-mirror load.
+* **Diffusion sharing** — each row is one diffusion; devices with a common source
+  (input pair: TAIL, tail mirror: VSS, mirror load: VIN) share strips.
+* **2-D common centroid** — the long-channel pairs are folded into two rows,
+  A B B A over B A A B: both devices have the same centroid in x and y, and each
+  owns the end fingers of one row, so neither sees more edge than the other.
+* **Dummies** — every matched row ends in two dummy fingers; the cascodes are
+  separated by shared dummies (x A A x B B B B x A A x). Dummy gates are tied to the
+  bulk (always off).
+* **Shared rings + tap rows** — one ring per group; tap rows between rows instead
+  of a ring per device.
+* **Wiring inside the group** — gate side: poly contact onto metal1 tracks;
+  source/drain side: metal1 strips up to metal2 tracks; bulk strips and dummy gates
+  drop straight onto the facing tap row. The two rows of a folded pair face one
+  shared source/drain channel (the cross-coupling); the lower row reaches it on
+  metal1, the upper on metal3 so the two never short. Nets that leave a channel use
+  metal3 risers placed beside the rows, never over a device; their left-to-right
+  order is chosen to minimise crossings, and nets shared by both groups get the same
+  column so the pins line up across the 1.2 µm gap.
 
-![mirror load](doc/mirror_load_ABBA.png)
+Each group passes DRC and LVS on its own ([check_groups.py](check_groups.py)).
 
-### Buffer bias mirror (three devices)
+![NMOS group](doc/v2_nmos_group.png)
 
-B A C C A B: the diode device MREFEA (A) and its two mirror outputs MBIASEA (B) and MBIASFB (C)
-all share the same centroid.
+![PMOS group](doc/v2_pmos_group.png)
 
-![buffer bias mirror](doc/buffer_bias_mirror_BACCAB.png)
+The input pair, folded into two rows (A B B A over B A A B) with two dummies per
+end and the shared source / drain channel between the rows:
 
-### Feedback divider R1 / R2
+![input pair, 2-D common centroid](doc/v2_input_pair.png)
 
-Thirteen identical poly strips: dummy, 7 × R1 and 4 × R2 interleaved symmetrically, dummy. The
-metal straps above and below chain each resistor's units in series.
+The riser bundle on the left of the core and the channel between R1/R2 and the core
+(EAOUT and ENB_5V going down to the test buffers):
 
-![R1/R2 array](doc/r1_r2_divider_array.png)
+![left side of the core](doc/v2_core_left.png)
 
-## Routing and power
+## 4. Block wiring
 
-- **Terminals:** each one leaves its device on a metal3 stub, gates on one side and
-  source/drain on the other.
-- **Channels:** between rows, every net has its own metal2 track. A constraint graph orders the
-  tracks so stubs of different nets never cross.
-- **Vertical wires:** nets that span rows, or reach a pin or bus, use a metal4 trunk placed
-  near the middle of its own connections.
-- **Keep-outs:** trunks stay off every device and keep 1.2 µm from the MIM cap. **Nothing is
-  routed over the resistors, the capacitor or any transistor** except a device's own terminal
-  connections.
-- **Pass device power:** ten 2.6 µm metal4 straps (alternating VIN / VOUT) rise from every row's
-  source and drain bars to the metal5 buses. Each strap meets each row through 5 via2 + 5 via3
-  cuts.
-- **VIN / VOUT trunks:** the trunks from the rest of the circuit reach the buses through a
-  corridor between Cc and the pass device.
+[route_v2.py](route_v2.py), on top of the placement:
 
-### Pass device, straps and power buses
+* **Signals** — the six shared nets cross the group gap on straight metal3
+  bridges; EAOUT goes straight up into the pass-device gate bar and across to Cc's
+  top plate; FB and IREF use a channel under the core (FB to R1/R2, IREF to Rref);
+  VIN_BIAS runs around Cc to Rref and along the bottom to RrefEA; MP1's VSS gate
+  drops 1.2 µm onto the NMOS ring.
+* **Cc** — every metal4 shape keeps 1.2 µm from the virtual bottom plate (MIMTM.1);
+  the VOUT strap leaves the plate at a right angle; EAOUT reaches the top plate
+  through the plate contact on metal5.
+* **Power** — VIN and VSS rails are 6 µm metal5 edge to edge; the VOUT bus (6 µm)
+  runs to the right edge (the VOUT pad side). The pass device is strapped as in v1:
+  metal4 straps 2.6 µm wide on a 3.2 µm pitch, alternating VIN / VOUT, with via
+  arrays on every row's bar. Power drops are 1 µm metal3 (2 µm to the test
+  buffers) with via arrays.
+* **Kelvin sense** — R1/R2's VOUT end does not touch the VOUT bus next to R1/R2: it
+  runs on its own (metal3 up through the buses, metal4 along the top edge) and joins
+  the bus at the VOUT pin, so the bus resistance is inside the regulation loop.
+  Without it, load regulation was 0.36 % typical / 0.84 % worst; with it 0.27 % /
+  0.75 %.
+* **Ports** — VIN, VSS (left ends of the rails), VOUT (right end of the VOUT bus),
+  VREF (pass-device edge), EN (VSS edge), FB_BUF and EAOUT_BUF (left edge).
 
-The 7-row pass device (bottom) with its ten metal4 straps rising to the two metal5 buses at the
-top: alternating VIN and VOUT.
+Power grid (metal5 rails and buses, metal4 straps):
 
-![pass device, straps and buses](doc/pass_device_straps_buses.png)
+![power grid](doc/v2_power_grid.png)
 
-### VIN, VOUT and EAOUT around the cap and pass device
+Signal routing (metal3 and metal4):
 
-Traced from the layout: VIN in blue, VOUT in green, EAOUT in red. The two vertical wires in the
-gap between the cap and the pass device are the VOUT (left) and VIN (right) trunks. EAOUT is the
-cap's top plate, the pass-device gate comb and the thin wires below them.
+![signal routing](doc/v2_signal_routing.png)
 
-![VIN VOUT EAOUT](doc/power_and_eaout_nets.png)
+Pass device, straps and the VOUT / VIN buses:
 
-## Parasitic extraction
+![pass device](doc/v2_pass_device.png)
 
-`pex/pex.tcl` (magic) extracts a flattened copy of the layout twice:
+Cc, Rref and the channel under the pass device (EAOUT, VOUT, VREF, VIN_BIAS):
 
-- **C-only** (`pex/ldo_pex_c.spice`): devices + wire capacitance to substrate + wire-to-wire coupling.
-- **RC** (`pex/ldo_pex_rc.spice`): additionally splits 16 nets, including all power nets, into
-  ≈ 6,000 resistor segments (`extresist`, simplification off so VOUT is included).
+![Cc and the channel](doc/v2_cc_channel.png)
 
-Wire capacitance on the key nets (C-only extraction):
+Test buffers (RrefEA, bias mirror, MPDEA, the two followers) and their channels:
 
-| Net | Total | To other signals | Notes |
+![test buffers](doc/v2_test_buffers.png)
+
+## 5. Verification
+
+* **DRC** — official GF180MCU KLayout deck (gf180mcuD): clean. The whole-die
+  density rules (Mx.4, MT.3, DCF.1b, PL.8) are met by the harness's chip-level fill.
+* **LVS** — magic extraction against the schematic netlist with netgen: *Circuits
+  match uniquely*, no property errors (28 devices, 18 nets after merging fingers).
+  30 dummy devices (gate tied to the bulk, always off) are removed first.
+
+## 6. Post-layout results
+
+Extracted with magic ([pex/pex.tcl](pex/pex.tcl)) as a C-only and a full RC
+netlist, simulated with the same testbenches as the schematic
+(`simulations/run_sims.py --pex rc --layout v2 --corners`).
+
+Typical corner, 27 °C, VIN = 5 V, CL = 2 pF:
+
+| Parameter | Spec | Schematic | **v2, RC-extracted** |
 |---|---|---|---|
-| EAOUT | 214 fF | 177 fF | Mostly coupling to VIN/VOUT inside the pass device (gate bars beside the source/drain bars). The gate-to-drain part adds to Cc. |
-| FB | 32 fF | 18 fF | Feedback node kept short and off the resistors |
-| VOUT | 316 fF | 276 fF | Low-impedance node |
-| VREF | 9.6 fF | 3.7 fF | |
-| FB_BUF / EAOUT_BUF | 21 / 19 fF | | |
+| VOUT at 5 mA | 3.201–3.399 V | 3.3092 V | **3.3093 V** |
+| Dropout at 10 mA | ≤ 300 mV | 152 mV | **162 mV** |
+| Quiescent current | ≤ 100 µA | 60.0 µA | **59.8 µA** |
+| Line regulation (4.5–5.5 V) | ≤ 1 % | 0.042 % | **0.042 %** |
+| Load regulation (0–10 mA) | ≤ 1 % | 0.269 % | **0.271 %** |
+| PSRR at 100 Hz | ≥ 40 dB | 59.0 dB | **59.0 dB** |
+| PSRR at 10 kHz / 1 MHz | — | 43.9 / 5.2 dB | 43.4 / 4.5 dB |
+| Load step 0 → 10 mA in 1 µs | — | −212 / +313 mV | −249 / +343 mV |
+| Line step 5.0 → 4.5 V in 1 µs | — | −54 / +52 mV | −58 / +56 mV |
+| EN turn-on | — | 1.66 µs | 1.74 µs |
+| Shutdown current | — | 0.19 nA | 1.27 nA |
 
-## Post-layout simulation
+All 45 corners (MOS tt/ff/ss/fs/sf × resistor/cap typical/ff/ss × −40/27/110 °C):
 
-`simulations/run_sims.py --pex c|rc` replaces the schematic LDO in all nine testbenches with
-the extracted netlist (same stimuli and metrics). Typical corner, 27 °C:
+| | Schematic | **v2, RC-extracted** | Spec |
+|---|---|---|---|
+| VOUT | 3.3078–3.3120 V | 3.3080–3.3123 V | 3.201–3.399 V |
+| Quiescent current | 43.6–87.0 µA | 43.4–86.8 µA | ≤ 100 µA |
+| Line regulation | ≤ 0.085 % | ≤ 0.084 % | ≤ 1 % |
+| Load regulation | ≤ 0.736 % | ≤ 0.751 % | ≤ 1 % |
+| Dropout at 10 mA | ≤ 262 mV | ≤ 273 mV | ≤ 300 mV |
+| PSRR at 100 Hz | ≥ 52.6 dB | ≥ 52.7 dB | ≥ 40 dB |
+| Shutdown current | ≤ 3.3 nA | ≤ 4.5 nA | — |
 
-| Parameter | Spec | Schematic | Layout (C) | Layout (RC) |
+Full tables: [results_v2_pex_rc/summary.md](../simulations/results_v2_pex_rc/summary.md)
+(C-only: [results_v2_pex_c/summary.md](../simulations/results_v2_pex_c/summary.md));
+the plots are in the same folders.
+
+### Loop stability
+
+Loop broken at the MIN1 gate of the RC-extracted netlist
+(`simulations/stability.py --pex rc --layout v2`); loads 0–10 mA, MOS corners,
+−40/27/110 °C ([stability.md](../simulations/results_v2_pex_rc/stability.md)):
+
+| CL | Worst-case PM | at | UGF range | Min GM |
 |---|---|---|---|---|
-| Output voltage (5 mA) | 3.201 – 3.399 V | 3.3092 V | 3.3091 V | 3.3083 V |
-| Dropout (10 mA) | ≤ 300 mV | 152 mV | 152 mV | **163 mV** |
-| Quiescent current | ≤ 100 µA | 60.0 µA | 59.7 µA | 59.7 µA |
-| Line regulation | ≤ 1 % | 0.042 % | 0.042 % | 0.038 % |
-| Load regulation | ≤ 1 % | 0.269 % | 0.269 % | 0.276 % |
-| PSRR at 100 Hz | ≥ 40 dB | 59.0 dB | 59.0 dB | 59.9 dB |
-| PSRR at 10 kHz / 1 MHz | – | 44.0 / 5.2 dB | 43.7 / 4.9 dB | 43.3 / 4.5 dB |
-| Load step 0 → 10 mA (1 µs) | – | −212 / +313 mV | −234 / +329 mV | −244 / +340 mV |
-| Line step 5.0 → 4.5 V (1 µs) | – | −54 / +52 mV | −56 / +53 mV | −59 / +56 mV |
-| EN turn-on time | – | 1.65 µs | 1.73 µs | 1.74 µs |
-| EN threshold | 3.3 V logic | 1.39 / 1.58 V | 1.39 / 1.58 V | 1.39 / 1.58 V |
-| Shutdown current | – | 0.19 nA | 1.22 nA | 1.22 nA |
+| 2 pF | **64.4°** (schematic 70.6°, v1 layout 65.7°) | fs, 110 °C, 0 mA | 1.27–1.88 MHz | 12.6 dB |
+| 50 pF | 26.1° (schematic 29.2°, v1 layout 26.9°) | fs, 110 °C, 0 mA | 0.75–1.88 MHz | 10.7 dB |
 
-- **Wire capacitance** (mostly on EAOUT) slows the loop slightly, so the load step grows by
-  ≈ 30 mV.
-- **Wire resistance** in the VIN → pass device → VOUT path adds 11 mV of dropout at 10 mA.
-- **Junction leakage** of the tap and dummy diffusions raises the shutdown current to ≈ 1 nA.
+### EM / IR
 
-RC netlist at the worst corners (110 °C), schematic value in brackets:
+[pex/emir_check.py](pex/emir_check.py): DC operating point of the RC-extracted
+netlist at the full 10 mA load, against the GF180MCU design-manual limits
+(section 14.2, DC, 110 °C):
 
-| MOS / R-C corner | Dropout (≤ 300 mV) | Load reg (≤ 1 %) | PSRR at 100 Hz (≥ 40 dB) | Iq (≤ 100 µA) | VOUT at 5 mA |
-|---|---|---|---|---|---|
-| ss / ss | **274 mV** (262) | 0.356 % (0.349) | 63.9 dB | 50.8 µA | 3.3084 V |
-| ss / ff | 273 mV (261) | 0.392 % (0.385) | 62.8 dB | 73.3 µA | 3.3100 V |
-| ff / ss | 179 mV (168) | 0.472 % (0.464) | 56.1 dB | 60.2 µA | 3.3075 V |
-| ff / ff | 178 mV (166) | **0.748 %** (0.736) | 53.9 dB | 86.6 µA | 3.3093 V |
-
-The tightest margin is dropout at slow corners and 110 °C: 274 mV, 26 mV inside the spec.
-
-### Post-layout plots (RC-extracted layout, typical corner)
-
-The same tests as the schematic plots in [`../simulations/README.md`](../simulations/README.md),
-run on the extracted layout netlist. Each plot has its test conditions underneath.
-
-#### Load regulation (0.276 %)
-
-![post-layout load regulation](../simulations/results_pex_rc/load_reg.png)
-
-#### Line regulation (0.038 %)
-
-![post-layout line regulation](../simulations/results_pex_rc/line_reg.png)
-
-#### Dropout (163 mV at 10 mA)
-
-![post-layout dropout](../simulations/results_pex_rc/dropout.png)
-
-#### PSRR (59.9 dB at 100 Hz)
-
-![post-layout PSRR](../simulations/results_pex_rc/psrr.png)
-
-#### Load transient (−244 / +340 mV)
-
-![post-layout load transient](../simulations/results_pex_rc/tran_load.png)
-
-#### Line transient (−59 / +56 mV)
-
-![post-layout line transient](../simulations/results_pex_rc/tran_line.png)
-
-#### Enable turn-on (1.74 µs)
-
-![post-layout EN transient](../simulations/results_pex_rc/en.png)
-
-#### Enable threshold
-
-![post-layout EN threshold](../simulations/results_pex_rc/en_dc.png)
-
-#### Quiescent and shutdown current (59.7 µA / 1.22 nA)
-
-![post-layout quiescent current](../simulations/results_pex_rc/iq.png)
-
-### Post-layout stability
-
-Same method as the schematic analysis (`simulations/stability.py --pex rc`): the loop is opened
-for AC at the gates of the MIN1 fingers inside the RC-extracted netlist. Sweep: 0–10 mA ×
-5 MOS corners × −40 / 27 / 110 °C × 2 pF and 50 pF on VOUT (210 cases).
-
-| Output capacitance | Worst phase margin (layout) | Schematic | Where | UGF range | Min gain margin |
-|---|---|---|---|---|---|
-| 2 pF | **65.7°** | 70.6° | fs, 110 °C, no load | 1.27 – 1.88 MHz | 12.8 dB |
-| 50 pF | 26.9° | 29.2° | fs, 110 °C, no load | 0.75 – 1.88 MHz | 11.9 dB |
-
-Typical corner, 27 °C, 2 pF: phase margin 68.7° at no load, rising to 84.5° at 10 mA. UGF is
-about 1.55 MHz and the low-frequency loop gain 69–77 dB. The extra ≈ 210 fF of wiring on EAOUT
-costs about 5° against the schematic.
-
-Phase margin against output capacitance at the worst corner (fs, 110 °C), layout:
-
-| Load | 2 pF | 5 pF | 10 pF | 15 pF | 20 pF | 30 pF | 50 pF | 100 pF | 200 pF |
-|---|---|---|---|---|---|---|---|---|---|
-| 0 (no load) | 66° | 58° | 49° | 43° | 39° | 33° | 27° | 20° | 16° |
-| 10 µA | 73° | 68° | 61° | 55° | 50° | 44° | 36° | 27° | 20° |
-| 100 µA | 81° | 80° | 78° | 75° | 73° | 69° | 62° | 50° | 38° |
-
-**Maximum output capacitance for ≥ 45° phase margin (layout):**
-
-| Load current | Max C_out |
-|---|---|
-| 0 (no load) | ≈ 12 pF |
-| ≥ 10 µA | ≈ 28 pF |
-| ≥ 100 µA | ≈ 100 pF |
-
-![post-layout loop gain](../simulations/results_pex_rc/stability.png)
-
-## EM / IR
-
-`pex/emir_check.py` simulates the RC netlist at the worst current condition (VIN = 5 V, EN on,
-10 mA load). It reads the voltage at every node of the VIN, VOUT and VSS resistor networks
-(IR drop) and checks currents against the GF180MCU design-manual limits
-([DRM §14.2](https://gf180mcu-pdk.readthedocs.io/en/latest/physical_verification/design_manual/drm_14_2.html),
-DC, 110 °C): metal 1–4 1.0 mA/µm, metal 5 (11 kÅ) 2.2 mA/µm, 0.28 mA per via. Strap currents
-assume an even split between the 10 straps plus 20 % margin. Via counts are taken from the GDS.
-
-| Check | First layout | Final layout | Limit |
+| Element | Current density | Limit | |
 |---|---|---|---|
-| IR drop VIN / VOUT / VSS at 10 mA | 25.4 / 24.5 / 1.0 mV | **6.4 / 5.8 / 1.0 mV** | – |
-| VOUT at the pin, 10 mA | 3.2923 V | **3.3063 V** | – |
-| Metal5 VIN/VOUT bus | 2.51 mA/µm (4 µm) ✗ | **1.68 mA/µm** (6 µm) ✓ | 2.2 mA/µm |
-| Pass-device strap, metal4 | 1.61 mA/µm (1.5 µm) ✗ | **0.93 mA/µm** (2.6 µm) ✓ | 1.0 mA/µm |
-| Via2/via3 per strap per row | 0.345 mA (1 cut) ✗ | **0.069 mA** (5 cuts) ✓ | 0.28 mA |
+| VIN / VOUT metal5 bus (6 µm), all the load current | 1.68 mA/µm | 2.2 | OK |
+| Pass-device metal4 strap (12 VIN / 12 VOUT, +20 % imbalance) | 0.39 mA/µm | 1.0 | OK |
+| via2 / via3 under each strap, each of the 3 rows (6 cuts) | 0.058 mA per via | 0.28 | OK |
 
-Fixes: the VIN/VOUT buses were widened to 6 µm and shortened to the pass-device corner, so the
-pins sit next to the pass device and the feedback sense point. The straps were widened to
-2.6 µm, and via arrays replaced the single via stacks.
+IR drop (pin to the farthest point of the net): VIN 10.5 mV (its pin is at the far
+left end of the edge-to-edge rail), VOUT 4.6 mV, VSS 0.8 mV.
 
-## Known limitations
-
-- **Output capacitance.** Stable with ≥ 45° phase margin (post-layout, worst corner) up to
-  ≈ 12 pF on VOUT at no load, ≈ 28 pF at ≥ 10 µA and ≈ 100 pF at ≥ 100 µA. See
-  [Post-layout stability](#post-layout-stability).
-- **Fast load edges.** A 10 mA step with 10 ns edges dips VOUT by ≈ 1 V (capless design, loop
-  response ≈ 1 µs). Loads with fast current edges need their own decoupling.
-- **EM check method.** It is analytic, from simulated currents, not a full per-segment sign-off.
-- **Corner coverage.** Post-layout corners cover the four extreme MOS × R/C combinations at
-  110 °C, not all 45.
-- **Not yet done.** Harness slot wrapper and pad connections.
-
-## Files and reproducing
-
-| Path | Contents |
-|---|---|
-| `build_layout.py` | Generates the whole layout: devices, placement, routing, DRC, extraction, LVS |
-| `gl_devices.py` | gLayout transistor generation and 5/6 V conversion (gLayout Python environment) |
-| `mag/`, `gds/ldo.gds` | Layout (magic cells) and GDS |
-| `lvs/` | Extracted netlist, LVS netlist (dummies removed) and netgen report `comp.out` |
-| `drc.txt` | magic DRC report |
-| `pex/` | Extraction script, C / RC netlists, EM/IR check |
-| `doc/` | Images used in this file |
+## 7. Reproduce
 
 ```sh
 cd layout
-python3 build_layout.py              # layout + DRC + LVS (needs gLayout: GLAYOUT_PYTHON)
+glpy core_groups.py gl            # device groups (gLayout environment)
+python3 check_groups.py           # group DRC + LVS
+python3 place_v2.py snug          # placement
+python3 route_v2.py               # block wiring, DRC, LVS -> ldo_v2.gds
 cd pex && magic -dnull -noconsole -rcfile $PDK_ROOT/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc pex.tcl
-python3 emir_check.py                # IR drop and EM
+python3 emir_check.py             # EM / IR
 cd ../../simulations
-python3 run_sims.py --pex rc         # post-layout spec tests -> results_pex_rc/
-python3 stability.py --pex rc        # post-layout loop gain  -> results_pex_rc/stability.*
+python3 run_sims.py --pex rc --corners
+python3 stability.py --pex rc
+cd ../layout && python3 make_doc_images.py   # the pictures in this README
 ```
+
+## 8. Open items
+
+* **Slot wrapper** — the Chipalooza slot is not assigned yet. The harness pins were
+  extracted for all 18 slots ([harness_slot_pins.json](harness_slot_pins.json)); the
+  block is drawn so VIN / VSS line up with the harness's `vdd_5v0` / `vss_5v0`
+  order. Final `slot_<N>.gds` once a slot is assigned.
+* **Fill exclusion** — mark the input pair, Cc and R1/R2 with dummy-exclude layers
+  before the chip-level fill runs.

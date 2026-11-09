@@ -45,7 +45,7 @@ SPEC = {
 
 
 PEX = None          # None = schematic; "c" / "rc" = extracted layout netlist (see --pex)
-PEX_DIR = HERE.parent / "layout" / "pex"
+PEX_DIR = HERE.parent / "layout" / "pex"            # final (v2) layout; v1 is in layout_v1/pex
 LDO_PINS = "VIN VREF EN VOUT FB_BUF EAOUT_BUF VSS"     # pin order of xschem/ldo.sym
 
 
@@ -384,15 +384,16 @@ def main():
     ap.add_argument("--corners", action="store_true", help="also run process corners x temperature")
     ap.add_argument("--pex", choices=["c", "rc"],
                     help="simulate the extracted layout (layout/pex/ldo_pex_<c|rc>.spice) instead of the "
-                         "schematic; results go to results_pex_<c|rc>/")
-    ap.add_argument("--layout", choices=["v1", "v2"], default="v1",
-                    help="with --pex: which layout (v2: layout/v2/pex, results to results_v2_pex_<c|rc>/)")
+                         "schematic; results go to results_v2_pex_<c|rc>/")
+    ap.add_argument("--layout", choices=["v1", "v2"], default="v2",
+                    help="with --pex: which layout (v2 = final, layout/pex; v1 = layout_v1/pex, "
+                         "results to results_pex_<c|rc>/)")
     a = ap.parse_args()
     global PEX, RES, PEX_DIR
     if a.pex:
-        PEX, RES = a.pex, HERE / f"results_pex_{a.pex}"
-        if a.layout == "v2":
-            PEX_DIR, RES = HERE.parent / "layout" / "v2" / "pex", HERE / f"results_v2_pex_{a.pex}"
+        PEX, RES = a.pex, HERE / f"results_v2_pex_{a.pex}"
+        if a.layout == "v1":
+            PEX_DIR, RES = HERE.parent / "layout_v1" / "pex", HERE / f"results_pex_{a.pex}"
     RUN.mkdir(exist_ok=True)
     RES.mkdir(exist_ok=True)
     print("typical corner:")

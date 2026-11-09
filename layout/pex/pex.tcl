@@ -1,7 +1,8 @@
-# Parasitic extraction of the LDO layout (run from layout/pex).
+# Parasitic extraction of the v2 LDO layout (run from layout/pex; see ../route_v2.py).
 # The layout is flattened first so wire coupling across cell boundaries extracts cleanly.
+addpath ..
 addpath ../mag
-load ldo
+load ldo_v2
 flatten ldo_flat
 load ldo_flat
 select top cell

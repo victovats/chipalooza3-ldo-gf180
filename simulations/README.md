@@ -3,7 +3,8 @@
 Pre-layout verification of the capless LDO (`xschem/ldo.sch`): 5.0 V in, 3.3 V out,
 0–10 mA, GF180MCU (gf180mcuD) 5/6 V devices. Everything here simulates the
 **schematic**, with ideal wiring. The post-layout results (extracted parasitics, EM/IR)
-are in [`../layout/README.md`](../layout/README.md).
+are in [`../layout/README.md`](../layout/README.md) (final layout) and
+[`../layout_v1/README.md`](../layout_v1/README.md) (first layout).
 
 ## Circuit
 

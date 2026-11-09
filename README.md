@@ -151,17 +151,17 @@ regulation at fast MOS / fast resistors / 110 C; shutdown current at fast MOS /
 | `simulations/run_sims.py` | Runs all testbenches, plots results, checks against spec |
 | `simulations/results/` | Result plots and summary table (schematic) |
 | `simulations/stability.py` | Loop-gain / phase-margin sweep |
-| `simulations/results_pex_c/`, `results_pex_rc/` | Post-layout results, first (v1) layout, extracted C / RC netlists |
 | `simulations/results_v2_pex_c/`, `results_v2_pex_rc/` | Post-layout results, final (v2) layout, extracted C / RC netlists |
+| `simulations/results_pex_c/`, `results_pex_rc/` | Post-layout results, first (v1) layout, extracted C / RC netlists |
 | `simulations/README.md` | Schematic simulation results |
 | `netlist/schematic/ldo.spice` | Exported schematic netlist |
-| `layout/build_layout.py`, `gl_devices.py` | Generates the layout (gLayout transistors + magic), runs DRC, extraction and LVS |
-| `layout/mag/`, `layout/gds/ldo.gds` | First (v1) layout (magic cells) and GDS, 188.3 x 146.9 um |
-| `layout/lvs/` | Extracted netlist and netgen LVS report (`comp.out`) |
-| `layout/pex/` | Parasitic extraction (C / RC) and EM/IR check |
-| `layout/README.md` | First (v1) layout and its post-layout results |
-| `layout/v2/` | Final (v2) layout: generator scripts, `ldo_v2.gds` (184.1 x 121.4 um), LVS, PEX, EM/IR |
-| `layout/v2/README.md` | Final layout: floorplan, screenshots, verification and post-layout results |
+| `layout/` | **Final (v2) layout**: `ldo_v2.gds` (184.1 x 121.4 um) and the scripts that build it |
+| `layout/build_layout.py`, `gl_devices.py`, `gl/`, `mag/` | Device generator (gLayout transistors + magic resistors / MIM cap) and the device cells |
+| `layout/core_groups.py`, `place_v2.py`, `route_v2.py` | Transistor groups, placement, wiring (with DRC and LVS) |
+| `layout/lvs/`, `layout/pex/` | LVS reports; parasitic extraction (C / RC) and EM/IR check |
+| `layout/README.md` | Final layout: floorplan, screenshots, verification and post-layout results |
+| `layout_v1/` | First (v1) layout, kept for reference: GDS (188.3 x 146.9 um), LVS, PEX, EM/IR and its own copy of the generator |
+| `layout_v1/README.md` | First layout and its post-layout results |
 
 ## 9. Reproducing the Results
 
@@ -175,28 +175,25 @@ python3 run_sims.py --corners      # spec tests, typical + 45 corners
 python3 stability.py               # loop gain / phase margin
 ```
 
-Layout, DRC and LVS (magic and netgen, also in IIC-OSIC-TOOLS). The transistors
-are generated with [gLayout](https://github.com/ReaLLMASIC/gLayout), which needs
-its own Python 3.10/3.11 environment; point `GLAYOUT_PYTHON` at it.
+Layout, DRC and LVS use magic, netgen and KLayout (also in IIC-OSIC-TOOLS). The
+transistors are generated with [gLayout](https://github.com/ReaLLMASIC/gLayout),
+which needs its own Python 3.10/3.11 environment; point `GLAYOUT_PYTHON` at it.
+The final layout is built, verified and extracted with the scripts in `layout/`;
+the steps are in [`layout/README.md`](layout/README.md#7-reproduce). In short:
 
 ```sh
 cd layout
-python3 build_layout.py
-```
-
-Post-layout (parasitic extraction, simulation of the extracted netlist, EM/IR):
-
-```sh
-cd layout/pex
+python3 route_v2.py                # wiring, DRC, LVS -> ldo_v2.gds
+cd pex
 magic -dnull -noconsole -rcfile $PDK_ROOT/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc pex.tcl
-python3 emir_check.py
+python3 emir_check.py              # EM / IR
 cd ../../simulations
-python3 run_sims.py --pex rc
-python3 stability.py --pex rc
+python3 run_sims.py --pex rc       # post-layout spec tests -> results_v2_pex_rc/
+python3 stability.py --pex rc      # post-layout loop gain
 ```
 
-The final (v2) layout is built, verified and extracted with the scripts in
-`layout/v2/`; the steps are in [`layout/v2/README.md`](layout/v2/README.md#7-reproduce).
+The first layout is in `layout_v1/` (steps in [`layout_v1/README.md`](layout_v1/README.md);
+add `--layout v1` to the simulation commands).
 
 Testbenches can also be opened and simulated individually in xschem
 (`cd simulations && xschem tb_line_reg.sch`). Schematics reference only files
@@ -206,7 +203,7 @@ in this repository or in the PDK via `$PDK_ROOT`.
 
 - **Harness integration.** The slot number is not assigned yet. The pin positions
   of all 18 slots are already extracted
-  ([`layout/v2/harness_slot_pins.json`](layout/v2/harness_slot_pins.json)), and the
+  ([`layout/harness_slot_pins.json`](layout/harness_slot_pins.json)), and the
   v2 block's VIN / VSS rails run edge to edge so they can join the harness supply
   from either side. Once a slot is assigned, the block goes into the
   `slot<N>_wrapper` template (1274.3 x 412.7 um), is delivered as

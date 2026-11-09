@@ -9,3 +9,6 @@ __pycache__/
 
 # secrets
 .env
+
+# magic extraction intermediates (regenerated on every run)
+*.ext

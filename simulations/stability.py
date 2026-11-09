@@ -120,15 +120,16 @@ def margins(freq, tdb, tph):
 def main():
     global PEX, PROBE, RES
     ap = rs.argparse.ArgumentParser(description=__doc__, formatter_class=rs.argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--pex", choices=["c", "rc"], help="analyse the extracted layout netlist; results to results_pex_<c|rc>/")
-    ap.add_argument("--layout", choices=["v1", "v2"], default="v1",
-                    help="with --pex: which layout (v2: layout/v2/pex, results to results_v2_pex_<c|rc>/)")
+    ap.add_argument("--pex", choices=["c", "rc"], help="analyse the extracted layout netlist; results to results_v2_pex_<c|rc>/")
+    ap.add_argument("--layout", choices=["v1", "v2"], default="v2",
+                    help="with --pex: which layout (v2 = final, layout/pex; v1 = layout_v1/pex, "
+                         "results to results_pex_<c|rc>/)")
     a = ap.parse_args()
     if a.pex:
-        PEX, PROBE, RES = a.pex, "x1.xpex", HERE / f"results_pex_{a.pex}"
-        if a.layout == "v2":
-            rs.PEX_DIR = HERE.parent / "layout" / "v2" / "pex"
-            RES = HERE / f"results_v2_pex_{a.pex}"
+        PEX, PROBE, RES = a.pex, "x1.xpex", HERE / f"results_v2_pex_{a.pex}"
+        if a.layout == "v1":
+            rs.PEX_DIR = HERE.parent / "layout_v1" / "pex"
+            RES = HERE / f"results_pex_{a.pex}"
     RUN.mkdir(exist_ok=True)
     RES.mkdir(exist_ok=True)
     (RUN / "stb_ldo.spice").write_text(broken_loop_subckt())
