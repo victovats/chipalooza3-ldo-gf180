@@ -1,0 +1,25 @@
+DRC violations: v2_pmos_core.lyrdb (official GF180MCU KLayout deck, 771 rules checked)
+
+Geometry violations: 0
+Whole-die density entries: 8 (met by the harness's chip-level fill)
+
+rule     type      cell           location / description
+DCF.1b   density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 DCF.1b : Global density for active layers (COMP+ Dummy COMP) shall be >= 25%
+M1.4     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 M1.4 : Metal1 coverage over the entire die shall be >30% (Refer to section 13.0 for Dummy Metal fill guidelines. Customer needs to ensure enough dummy metal to satisfy Metal1 coverage) : 30%
+M2.4     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 M2.4 : Metal2 coverage over the entire die shall be >30% (Refer to section 13.0 for Dummy Metal fill guidelines. Customer needs to ensure enough dummy metal to satisfy Metal2 coverage) : 30%
+M3.4     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 M3.4 : metal3 coverage over the entire die shall be >30% (Refer to section 13.0 for Dummy Metal fill guidelines. Customer needs to ensure enough dummy metal to satisfy metal3 coverage) : 30%
+M4.4     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 M4.4 : metal4 coverage over the entire die shall be >30% (Refer to section 13.0 for Dummy Metal fill guidelines. Customer needs to ensure enough dummy metal to satisfy metal4 coverage) : 30%
+M5.4     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 M5.4 : metal5 coverage over the entire die shall be >30% (Refer to section 13.0 for Dummy Metal fill guidelines. Customer needs to ensure enough dummy metal to satisfy metal5 coverage) : 30%
+MT.3     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 MT.3 : MetalTop coverage over the entire die shall be >30% (Refer to section 10.3 for Dummy Metal-fill guidelines. Customer needs to ensure enough dummy metal to satisfy Metaln coverage) : 30%
+PL.8     density   v2_pmos_core   (-28.24, -2.39) - (28.24, 34.35) um
+                                 PL.8 : Poly2 coverage over the entire die shall be 14%. Dummy poly2 lines must be added to meet the minimum poly2 density requirement. : 14%
+
+Every other rule: 0 violations.
+RESULT: DRC clean (density entries only)

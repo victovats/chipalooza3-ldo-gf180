@@ -1,0 +1,12 @@
+LVS result: ldo_v2.out (magic extraction vs the schematic, netgen)
+
+RESULT: PASS - Final result: Circuits match uniquely.
+Property (W / L / value) errors: none
+
+layout                                     | schematic
+Number of devices: 28                      |Number of devices: 28
+Number of nets: 18                         |Number of nets: 18
+
+30 dummy devices (gate tied to the bulk, always off) removed before the compare.
+Extracted with 'extract unique': same-name labels count as one net only if the metal is connected.
+Full netgen report: ldo_v2.out

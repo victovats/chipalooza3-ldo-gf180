@@ -21,6 +21,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import build_layout as bl  # noqa: E402
+import report_summary  # noqa: E402
 
 DRC_DECK = "/foss/pdks/gf180mcuD/libs.tech/klayout/tech/drc/gf180mcu.drc"
 KLAYOUT = "/foss/tools/klayout/klayout"
@@ -72,7 +73,7 @@ def reference(group, info):
 def extract(group, ports):
     tcl = LVS / f"_ext_{group}.tcl"
     tcl.write_text("\n".join([
-        f"gds read {HERE / 'gl' / (group + '.gds')}", f"load {group}", "select top cell", "extract all",
+        f"gds read {HERE / 'gl' / (group + '.gds')}", f"load {group}", "select top cell", "extract unique", "extract all",
         "ext2spice lvs", "ext2spice hierarchy off", f"ext2spice -o {group}_lay.spice", "quit -noprompt"]) + "\n")
     subprocess.run([bl.MAGIC, "-dnull", "-noconsole", "-rcfile", bl.RC, tcl.name], cwd=LVS,
                    stdin=subprocess.DEVNULL, capture_output=True, text=True)
@@ -109,9 +110,13 @@ def main():
     for group in sys.argv[1:] or list(info):
         real, dens = drc(group)
         print(f"{group}: DRC {'clean' if not real else real}  (chip-level density: {sorted(dens)})")
+        report_summary.drc_errors(LVS / f"{group}.lyrdb", LVS / f"{group}_drc_errors.txt")
         (LVS / f"{group}_ref.spice").write_text(reference(group, info[group]))
         n = extract(group, sorted(info[group]["pins"]))
         ok, tail = lvs(group)
+        report_summary.lvs_result(LVS / f"{group}.out", LVS / f"{group}_lvs_result.txt", n,
+                                  "Extracted with 'extract unique': same-name labels count as one net "
+                                  "only if the metal is connected.")
         print(f"{group}: {n} dummy devices removed; LVS {'MATCH' if ok else 'MISMATCH'}", *tail, sep="\n    ")
 
 

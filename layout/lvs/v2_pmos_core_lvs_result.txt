@@ -1,0 +1,12 @@
+LVS result: v2_pmos_core.out (magic extraction vs the schematic, netgen)
+
+RESULT: PASS - Final result: Circuits match uniquely.
+Property (W / L / value) errors: none
+
+layout                                     | schematic
+Number of devices: 8                       |Number of devices: 8
+Number of nets: 9                          |Number of nets: 9
+
+14 dummy devices (gate tied to the bulk, always off) removed before the compare.
+Extracted with 'extract unique': same-name labels count as one net only if the metal is connected.
+Full netgen report: v2_pmos_core.out

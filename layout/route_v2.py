@@ -60,6 +60,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import build_layout as bl  # noqa: E402
+import report_summary  # noqa: E402
 
 TOP = "ldo_v2"
 PLACE = "ldo_v2_place_snug"
@@ -571,7 +572,11 @@ def main():
         f.unlink()
     real = drc()
     print("KLayout DRC:", "clean" if not real else real)
+    report_summary.drc_errors(HERE / "lvs" / f"{TOP}.lyrdb", HERE / "lvs" / f"{TOP}_drc_errors.txt")
     n, ok, tail = lvs()
+    report_summary.lvs_result(HERE / "lvs" / f"{TOP}.out", HERE / "lvs" / f"{TOP}_lvs_result.txt", n,
+                              "Extracted with 'extract unique': same-name labels count as one net only "
+                              "if the metal is connected.")
     print(f"LVS vs schematic (ldo): {'MATCH' if ok else 'MISMATCH'}  ({n} dummies removed)", *tail, sep="\n  ")
     if not ok:
         use = connectivity()
