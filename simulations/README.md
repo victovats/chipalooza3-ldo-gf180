@@ -5,6 +5,23 @@ Pre-layout verification of the capless LDO (`xschem/ldo.sch`): 5.0 V in, 3.3 V o
 **schematic**, with ideal wiring. The post-layout results (extracted parasitics, EM/IR)
 are in [`../layout/README.md`](../layout/README.md).
 
+## Circuit
+
+`xschem/ldo.sch`. Signal path: the feedback divider R1/R2 senses VOUT and gives FB. The error
+amplifier compares FB with VREF; it is the NMOS input pair MIN1/MIN2 with tail current MTAIL,
+cascodes MCASC1/2 and the PMOS mirror load MLOAD1/2. Its output EAOUT drives the gate of the
+PMOS pass device MPASS. The Miller capacitor Cc (EAOUT to VOUT) sets the loop's dominant pole.
+Rref and MREF set the amplifier bias. MFBBUF and MEAOUTBUF are source-follower test buffers for
+FB and EAOUT. MENPASSOFF, MENDISCHARGE, MBIASSW and the pulldowns turn everything off when EN is
+low.
+
+![LDO schematic](../xschem/ldo_schematic.png)
+
+The EN level shifter (`xschem/ldo_levelshift.sch`) translates the 3.3 V harness logic to the
+5 V VIN domain:
+
+![EN level shifter schematic](../xschem/ldo_levelshift_schematic.png)
+
 ## Summary
 
 | Parameter | Spec | Typical (27 °C) | Worst of 45 corners | Result |
