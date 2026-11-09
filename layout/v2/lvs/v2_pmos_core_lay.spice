@@ -1,0 +1,37 @@
+* NGSPICE file created from v2_pmos_core.ext - technology: gf180mcuD
+
+X0 a_n2200_394# EAREF EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X1 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=32.7p ps=0.1364m w=2.5u l=3u
+X2 VIN VSS ENB_5V VIN pfet_06v0 ad=0.6p pd=3.2u as=0.6p ps=3.2u w=1u l=40u
+X3 VIN VIN VIN VIN pfet_06v0 ad=0.725p pd=3.66u as=0 ps=0 w=1.25u l=0.55u
+X4 a_n2200_1734# EAREF EAOUT VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X5 a_n2200_1734# a_n2200_394# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X6 a_n2200_394# a_n2200_394# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X7 VIN a_n2200_394# a_n2200_394# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X8 a_n2200_394# VIN a_n2200_394# VIN pfet_06v0 ad=0.7p pd=3.06u as=8.6p ps=38u w=2.5u l=3u
+X9 a_n2200_1734# a_n2200_394# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X10 VIN a_n2200_394# a_n2200_394# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X11 a_n2200_1734# EAREF EAOUT VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X12 EAREF EAREF a_n2200_394# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X13 VIN EN_5V EAOUT VIN pfet_06v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X14 a_n2200_394# a_n2200_394# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X15 EAOUT EAREF a_n2200_1734# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X16 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=3u
+X17 EAREF VIN EAREF VIN pfet_06v0 ad=0.75p pd=3.7u as=4.3p ps=21.88u w=1.25u l=0.55u
+X18 VIN VIN VIN VIN pfet_06v0 ad=0.725p pd=3.66u as=0 ps=0 w=1.25u l=0.55u
+X19 VIN_BIAS ENB_5V VIN VIN pfet_06v0 ad=1.4p pd=5.56u as=3p ps=11.2u w=5u l=0.6u
+X20 VIN a_n2200_394# a_n2200_1734# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X21 EAREF EAREF a_n2200_394# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X22 EAREF VIN a_n2200_1734# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X23 VIN ENB_5V EN_5V VIN pfet_06v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X24 EAREF VIN EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0 ps=0 w=1.25u l=0.55u
+X25 a_n2200_1734# VIN a_n2200_1734# VIN pfet_06v0 ad=1.5p pd=6.2u as=9.3p ps=41.62u w=2.5u l=3u
+X26 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=3u
+X27 EAOUT EAREF a_n2200_1734# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X28 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=3u
+X29 a_n2200_1734# VIN a_n2200_1734# VIN pfet_06v0 ad=0.7p pd=3.06u as=0 ps=0 w=2.5u l=3u
+X30 VIN ENB_5V VIN_BIAS VIN pfet_06v0 ad=3p pd=11.2u as=1.4p ps=5.56u w=5u l=0.6u
+X31 a_n2200_1734# VIN EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X32 VIN a_n2200_394# a_n2200_1734# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X33 a_n2200_394# EAREF EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X34 a_n2200_394# VIN a_n2200_394# VIN pfet_06v0 ad=1.5p pd=6.2u as=0 ps=0 w=2.5u l=3u

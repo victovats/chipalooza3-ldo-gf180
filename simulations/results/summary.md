@@ -11,11 +11,11 @@ EN = 3.3 V (harness logic level), CL = 2 pF, unless noted.
 | Line regulation (4.5-5.5 V, 5 mA) | <= 1.0 % | 0.042 % | PASS | tb_line_reg |
 | Load regulation (0-10 mA) | <= 1.0 % | 0.269 % | PASS | tb_load_reg |
 | PSRR (100 Hz, 5 mA) | >= 40 dB | 59.0 dB | PASS | tb_psrr |
-| PSRR (10 kHz / 1 MHz) | - | 44.0 / 5.2 dB | info | tb_psrr |
+| PSRR (10 kHz / 1 MHz) | - | 43.9 / 5.2 dB | info | tb_psrr |
 | Load step 0->10 mA, 1 us | - | -212 / +313 mV | info | tb_tran_load |
 | Line step 5.0->4.5 V, 1 us | - | -54 / +52 mV | info | tb_tran_line |
 | EN off -> VOUT | 0 V | 0.00 mV | PASS | tb_en |
-| EN turn-on time (to 3.2 V) | - | 1.65 us | info | tb_en |
+| EN turn-on time (to 3.2 V) | - | 1.66 us | info | tb_en |
 | EN switching threshold | 3.3 V logic | 1.39 / 1.58 V (VIN 4.5 / 5.5) | PASS | tb_en_dc |
 | Shutdown current (EN = 0) | - | 0.19 nA | info | tb_iq |
 | Test buffer FB_BUF (FB - FB_BUF) | follows FB | 0.442 V (0.763 V below FB = 1.206 V) | info | tb_iq |
@@ -53,7 +53,7 @@ dropout at 10 mA, PSRR at 5 mA.
 | ff | ff | 110 | 3.3106  | 87.0  | 0.078  | 0.736  | 166  | 53.2  | 3.28 |
 | ff | ss | -40 | 3.3078  | 51.6  | 0.040  | 0.197  | 83  | 59.3  | 0.20 |
 | ff | ss | 27 | 3.3082  | 55.9  | 0.051  | 0.262  | 123  | 57.2  | 0.22 |
-| ff | ss | 110 | 3.3087  | 60.5  | 0.061  | 0.464  | 168  | 55.5  | 3.28 |
+| ff | ss | 110 | 3.3087  | 60.5  | 0.061  | 0.465  | 168  | 55.5  | 3.28 |
 | ss | typical | -40 | 3.3093  | 51.4  | 0.020  | 0.218  | 137  | 66.0  | 0.17 |
 | ss | typical | 27 | 3.3098  | 55.8  | 0.026  | 0.278  | 192  | 63.6  | 0.17 |
 | ss | typical | 110 | 3.3102  | 60.4  | 0.030  | 0.363  | 262  | 61.8  | 0.19 |

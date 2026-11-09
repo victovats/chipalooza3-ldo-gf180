@@ -1,0 +1,64 @@
+
+Circuit 1 cell nfet_05v0 and Circuit 2 cell nfet_05v0 are black boxes.
+Warning: Equate pins:  cell nfet_05v0 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell nfet_05v0 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: nfet_05v0                       |Circuit 2: nfet_05v0                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nfet_05v0 and nfet_05v0 are equivalent.
+
+Circuit 1 cell nfet_06v0 and Circuit 2 cell nfet_06v0 are black boxes.
+Warning: Equate pins:  cell nfet_06v0 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell nfet_06v0 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: nfet_06v0                       |Circuit 2: nfet_06v0                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nfet_06v0 and nfet_06v0 are equivalent.
+
+Class v2_nmos_core (0):  Merged 12 parallel devices.
+Class v2_nmos_core (1):  Merged 12 parallel devices.
+Subcircuit summary:
+Circuit 1: v2_nmos_core                    |Circuit 2: v2_nmos_core                    
+-------------------------------------------|-------------------------------------------
+nfet_05v0 (11->5)                          |nfet_05v0 (11->5)                          
+nfet_06v0 (9->3)                           |nfet_06v0 (9->3)                           
+Number of devices: 8                       |Number of devices: 8                       
+Number of nets: 11                         |Number of nets: 11                         
+---------------------------------------------------------------------------------------
+Resolving symmetries by property value.
+Resolving symmetries by pin name.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: v2_nmos_core                    |Circuit 2: v2_nmos_core                    
+-------------------------------------------|-------------------------------------------
+EN                                         |EN                                         
+VOUT                                       |VOUT                                       
+EN_5V                                      |EN_5V                                      
+EAREF                                      |EAREF                                      
+EAOUT                                      |EAOUT                                      
+FB                                         |FB                                         
+VREF                                       |VREF                                       
+ENB_5V                                     |ENB_5V                                     
+IREF                                       |IREF                                       
+VSS                                        |VSS                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes v2_nmos_core and v2_nmos_core are equivalent.
+
+Final result: Circuits match uniquely.
+.

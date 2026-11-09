@@ -1,0 +1,53 @@
+
+Circuit 1 cell pfet_06v0 and Circuit 2 cell pfet_06v0 are black boxes.
+Warning: Equate pins:  cell pfet_06v0 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell pfet_06v0 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: pfet_06v0                       |Circuit 2: pfet_06v0                       
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes pfet_06v0 and pfet_06v0 are equivalent.
+
+Cell v2_pmos_core (0) disconnected node: VOUT
+Cell v2_pmos_core (0) disconnected node: VREF
+Cell v2_pmos_core (1) disconnected node: VOUT
+Cell v2_pmos_core (1) disconnected node: VREF
+Class v2_pmos_core (0):  Merged 13 parallel devices.
+Class v2_pmos_core (1):  Merged 13 parallel devices.
+Cell v2_pmos_core (0) disconnected node: VOUT
+Cell v2_pmos_core (0) disconnected node: VREF
+Cell v2_pmos_core (1) disconnected node: VOUT
+Cell v2_pmos_core (1) disconnected node: VREF
+Subcircuit summary:
+Circuit 1: v2_pmos_core                    |Circuit 2: v2_pmos_core                    
+-------------------------------------------|-------------------------------------------
+pfet_06v0 (21->8)                          |pfet_06v0 (21->8)                          
+Number of devices: 8                       |Number of devices: 8                       
+Number of nets: 9                          |Number of nets: 9                          
+---------------------------------------------------------------------------------------
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: v2_pmos_core                    |Circuit 2: v2_pmos_core                    
+-------------------------------------------|-------------------------------------------
+EAOUT                                      |EAOUT                                      
+EN_5V                                      |EN_5V                                      
+VIN_BIAS                                   |VIN_BIAS                                   
+VSS                                        |VSS                                        
+VIN                                        |VIN                                        
+EAREF                                      |EAREF                                      
+ENB_5V                                     |ENB_5V                                     
+VOUT                                       |VOUT                                       
+VREF                                       |VREF                                       
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes v2_pmos_core and v2_pmos_core are equivalent.
+
+Final result: Circuits match uniquely.
+.

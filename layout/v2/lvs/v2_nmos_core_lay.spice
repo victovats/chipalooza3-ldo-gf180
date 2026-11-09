@@ -1,0 +1,34 @@
+* NGSPICE file created from v2_nmos_core.ext - technology: gf180mcuD
+
+X0 VSS ENB_5V IREF VSS nfet_05v0 ad=0.6p pd=3.2u as=0.6p ps=3.2u w=1u l=0.6u
+X1 VSS ENB_5V EN_5V VSS nfet_05v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X2 a_n768_3216# VREF EAOUT VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X3 EAOUT VREF a_n768_3216# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X4 VSS VSS VSS VSS nfet_05v0 ad=0.725p pd=3.66u as=38p ps=0.15722m w=1.25u l=0.6u
+X5 EAOUT VREF a_n768_3216# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X6 VSS IREF a_n768_3216# VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X7 a_n768_3216# IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X8 a_n768_3216# FB EAREF VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X9 IREF IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X10 EAREF FB a_n768_3216# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X11 VSS IREF IREF VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X12 EAREF VSS EAREF VSS nfet_06v0 ad=3p pd=11.2u as=14.4p ps=55.76u w=5u l=3u
+X13 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X14 VSS EN ENB_5V VSS nfet_06v0 ad=0.3p pd=2.2u as=0.3p ps=2.2u w=0.5u l=5u
+X15 VSS IREF a_n768_3216# VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X16 VSS IREF IREF VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X17 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X18 EAREF VSS EAREF VSS nfet_06v0 ad=1.4p pd=5.56u as=0 ps=0 w=5u l=3u
+X19 VSS VSS VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0 ps=0 w=1.25u l=0.6u
+X20 a_n768_3216# FB EAREF VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X21 VSS VSS VSS VSS nfet_05v0 ad=0.75p pd=3.7u as=0 ps=0 w=1.25u l=0.6u
+X22 VSS VSS VSS VSS nfet_05v0 ad=0.725p pd=3.66u as=0 ps=0 w=1.25u l=0.6u
+X23 VSS ENB_5V VOUT VSS nfet_05v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X24 EAOUT VSS EAOUT VSS nfet_06v0 ad=3p pd=11.2u as=14.4p ps=55.76u w=5u l=3u
+X25 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X26 IREF IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X27 a_n768_3216# IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X28 EAREF FB a_n768_3216# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X29 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X30 EAOUT VSS EAOUT VSS nfet_06v0 ad=1.4p pd=5.56u as=0 ps=0 w=5u l=3u
+X31 a_n768_3216# VREF EAOUT VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u

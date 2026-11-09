@@ -1,0 +1,15 @@
+* NGSPICE file created from v2_min_pair.ext - technology: gf180mcuD
+
+.subckt v2_min_pair
+X0 a_n768_n454# a_n1368_n502# a_n1480_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X1 a_1368_n454# a_768_n502# a_656_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X2 a_n3916_n454# a_n3916_n454# a_n3916_n454# a_n4126_n758# nfet_06v0 ad=2.9p pd=11.16u as=5.8p ps=22.32u w=5u l=3u
+X3 a_656_n454# a_56_n502# a_n56_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X4 a_n56_n454# a_n656_n502# a_n768_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X5 a_n2192_n454# a_n2792_n502# a_n2912_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=3p ps=11.2u w=5u l=3u
+X6 a_3084_n454# a_3084_n454# a_3084_n454# a_n4126_n758# nfet_06v0 ad=2.9p pd=11.16u as=5.8p ps=22.32u w=5u l=3u
+X7 a_2792_n454# a_2192_n502# a_2080_n454# a_n4126_n758# nfet_06v0 ad=3p pd=11.2u as=1.4p ps=5.56u w=5u l=3u
+X8 a_n1480_n454# a_n2080_n502# a_n2192_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X9 a_2080_n454# a_1480_n502# a_1368_n454# a_n4126_n758# nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+.ends
+

@@ -44,7 +44,7 @@ def broken_loop_subckt():
     """The LDO netlist with the loop opened for AC at the gate of MIN1.
 
     Schematic: MIN1's gate FB -> FBG. Extracted layout: every finger of the
-    input pair whose gate is FB (nfet_06v0 w=10u l=3u) -> FBG, and `ldo` is a
+    input pair whose gate is FB (nfet_06v0, l=3u) -> FBG, and `ldo` is a
     wrapper around the extracted subcircuit."""
     probe = ("* loop-gain probe: DC path FB-FBG, AC injection into FBG\n"
              "Lbrk FB FBG 1G\nCinj FBG XINJ 1\nVstb XINJ VSS DC 0 AC 1\n")
@@ -58,7 +58,7 @@ def broken_loop_subckt():
     for line in pexf.read_text().splitlines():
         f = line.split()
         if f and f[0].startswith("X") and len(f) > 5 and f[2] == "FB" and f[5] == "nfet_06v0" \
-                and "w=10u" in line and "l=3u" in line:
+                and "l=3u" in line:
             f[2] = "FBG"
             line = " ".join(f)
             n += 1
@@ -121,9 +121,14 @@ def main():
     global PEX, PROBE, RES
     ap = rs.argparse.ArgumentParser(description=__doc__, formatter_class=rs.argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--pex", choices=["c", "rc"], help="analyse the extracted layout netlist; results to results_pex_<c|rc>/")
+    ap.add_argument("--layout", choices=["v1", "v2"], default="v1",
+                    help="with --pex: which layout (v2: layout/v2/pex, results to results_v2_pex_<c|rc>/)")
     a = ap.parse_args()
     if a.pex:
         PEX, PROBE, RES = a.pex, "x1.xpex", HERE / f"results_pex_{a.pex}"
+        if a.layout == "v2":
+            rs.PEX_DIR = HERE.parent / "layout" / "v2" / "pex"
+            RES = HERE / f"results_v2_pex_{a.pex}"
     RUN.mkdir(exist_ok=True)
     RES.mkdir(exist_ok=True)
     (RUN / "stb_ldo.spice").write_text(broken_loop_subckt())

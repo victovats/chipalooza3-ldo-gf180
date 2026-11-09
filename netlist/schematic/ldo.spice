@@ -39,7 +39,7 @@ XMLOAD2 CASCB2 CASCB1 VIN VIN pfet_06v0 L=3u W=10u nf=1 ad='int((nf+1)/2) * W/nf
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0
 XMPASS VOUT EAOUT VIN VIN pfet_06v0 L=0.55u W=90u nf=30 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'
 + ps='2*int((nf+2)/2) * (W/nf + 0.18u)' nrd='0.18u / W' nrs='0.18u / W' sa=0 sb=0 sd=0 m=7
-XCc EAOUT VOUT cap_mim_2f0fF c_width=38.6e-6 c_length=38.6e-6
+XCc EAOUT VOUT cap_mim_2f0fF c_width=27.35e-6 c_length=54.5e-6
 XR1 FB VOUT VSS ppolyf_u_1k_6p0 r_width=2e-6 r_length=345.30e-6
 XR2 VSS FB VSS ppolyf_u_1k_6p0 r_width=2e-6 r_length=197.24e-6
 XMCASC1 CASCB1 EAREF EAREF VIN pfet_06v0 L=0.55u W=5u nf=1 ad='int((nf+1)/2) * W/nf * 0.18u' as='int((nf+2)/2) * W/nf * 0.18u' pd='2*int((nf+1)/2) * (W/nf + 0.18u)'

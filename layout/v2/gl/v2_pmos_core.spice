@@ -1,0 +1,30 @@
+* NGSPICE file created from v2_pmos_core.ext - technology: gf180mcuD
+
+.subckt v2_pmos_core
+X0 a_n3916_435# a_n3916_435# a_n3916_435# w_n4242_n1328# pfet_06v0 ad=0.725p pd=3.66u as=1.45p ps=7.32u w=1.25u l=0.55u
+X1 a_n3916_n968# a_n3916_n968# a_n3916_n968# w_n4242_n1328# pfet_06v0 ad=1.45p pd=6.16u as=2.9p ps=12.32u w=2.5u l=3u
+X2 a_n56_n968# a_n656_n1016# a_n768_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X3 a_n2950_435# a_n3060_387# a_n3172_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X4 a_n2728_435# a_n2838_387# a_n2950_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X5 a_n2062_435# a_n2172_387# a_n2284_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X6 a_n2192_n968# a_n2792_n1016# a_n2912_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=1.5p ps=6.2u w=2.5u l=3u
+X7 a_n1840_435# a_n1950_387# a_n2062_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X8 a_n1174_435# a_n1284_387# a_n1396_435# w_n4242_n1328# pfet_06v0 ad=0.75p pd=3.7u as=0.35p ps=1.81u w=1.25u l=0.55u
+X9 a_726_60# a_726_60# a_726_60# w_n4242_n1328# pfet_06v0 ad=2.9p pd=11.16u as=5.8p ps=22.32u w=5u l=0.6u
+X10 a_3084_n968# a_3084_n968# a_3084_n968# w_n4242_n1328# pfet_06v0 ad=1.45p pd=6.16u as=2.9p ps=12.32u w=2.5u l=3u
+X11 a_n3172_435# a_n3282_387# a_n3402_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.75p ps=3.7u w=1.25u l=0.55u
+X12 a_n2284_435# a_n2394_387# a_n2506_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X13 a_2792_n968# a_2192_n1016# a_2080_n968# w_n4242_n1328# pfet_06v0 ad=1.5p pd=6.2u as=0.7p ps=3.06u w=2.5u l=3u
+X14 a_n1480_n968# a_n2080_n1016# a_n2192_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X15 a_2080_n968# a_1480_n1016# a_1368_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X16 a_n768_n968# a_n1368_n1016# a_n1480_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X17 a_n882_435# a_n882_435# a_n882_435# w_n4242_n1328# pfet_06v0 ad=0.725p pd=3.66u as=1.45p ps=7.32u w=1.25u l=0.55u
+X18 a_n1396_435# a_n1506_387# a_n1618_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X19 a_n330_60# a_n330_60# a_n330_60# w_n4242_n1328# pfet_06v0 ad=2.9p pd=11.16u as=5.8p ps=22.32u w=5u l=0.6u
+X20 a_1368_n968# a_768_n1016# a_656_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X21 a_n2506_435# a_n2616_387# a_n2728_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X22 a_434_60# a_314_12# a_194_60# w_n4242_n1328# pfet_06v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X23 a_n1618_435# a_n1728_387# a_n1840_435# w_n4242_n1328# pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X24 a_656_n968# a_56_n1016# a_n56_n968# w_n4242_n1328# pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+.ends
+

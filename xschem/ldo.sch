@@ -291,8 +291,8 @@ model=pfet_06v0
 spiceprefix=X
 }
 C {symbols/cap_mim_2f0fF.sym} 2090 -380 3 0 {name=Cc
-W=38.6e-6
-L=38.6e-6
+W=27.35e-6
+L=54.5e-6
 model=cap_mim_2f0fF
 spiceprefix=X
 m=1}

@@ -1,0 +1,49 @@
+magic
+tech gf180mcuD
+magscale 1 10
+timestamp 0
+use v2_nmos_core  v2_nmos_core
+timestamp 1622796489
+transform 1 0 24344 0 1 678
+box -5448 -278 5448 6880
+use v2_pmos_core  v2_pmos_core
+timestamp 1622796490
+transform 1 0 24344 0 1 7871
+box -5448 -278 5448 6670
+use ppolyf_u_1k_6p0_Z3P5H3  Rref
+timestamp 1793399032
+transform 1 0 33396 0 1 1753
+box -2936 -1285 2936 1285
+use cap_mim_2p0fF_XE8AU3  Cc
+timestamp 1794191334
+transform 1 0 33367 0 1 8971
+box -2975 -5570 2735 5570
+use gl_pmos_3x0p55_70x3  MPASS
+timestamp 1622789948
+transform 1 0 27193 0 1 17468
+box -8297 -2047 8297 2047
+use res_r1r2_array  R1R2
+timestamp 0
+transform 1 0 14932 0 1 13777
+box -3324 -5738 3324 5738
+use ppolyf_u_1k_6p0_Z4C53L  RrefEA
+timestamp 1794193378
+transform 1 0 4804 0 1 11867
+box -4336 -6795 4336 6795
+use gl_nmatch_2p5x0p6_BACCAB  MREFEA_MBIAS
+timestamp 1622059459
+transform 1 0 3016 0 1 2595
+box -2240 -1409 2240 1409
+use gl_nmos_1x0p6_1  MPDEA
+timestamp 1622059455
+transform 1 0 6002 0 1 2595
+box -446 -610 446 610
+use gl_nmos_5x0p6_1  MFBBUF
+timestamp 1622059455
+transform 1 0 7194 0 1 2595
+box -446 -1009 446 1009
+use gl_nmos_5x0p6_1  MEAOUTBUF
+timestamp 1622059455
+transform 1 0 8386 0 1 2595
+box -446 -1009 446 1009
+<< end >>

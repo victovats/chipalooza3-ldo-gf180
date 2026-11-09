@@ -110,5 +110,16 @@
   "mult": 7,
   "numcols": 1,
   "v5": false
- }
+ },
+ "gl_pmos_3x0p55_70x3": {
+  "type": "pmos",
+  "w": 3,
+  "l": 0.55,
+  "nf": 70,
+  "mult": 3,
+  "numcols": 1,
+  "v5": false
+ },
+ "gf180mcu::cap_mim_2p0fF|w 27.35 l 54.50": "cap_mim_2p0fF_XE8AU3",
+ "gf180mcu::ppolyf_u_1k_6p0|w 1 l 65.360 nx 30 snake 1": "ppolyf_u_1k_6p0_Z4C53L"
 }

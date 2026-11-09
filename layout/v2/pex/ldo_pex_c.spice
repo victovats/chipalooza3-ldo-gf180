@@ -1,0 +1,433 @@
+* NGSPICE file created from ldo_flat.ext - technology: gf180mcuD
+
+.subckt ldo_flat EAOUT_BUF FB_BUF EN VREF VIN VOUT VSS
+X0 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X1 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X2 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X3 a_22144_9605# a_22144_8265# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X4 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X5 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X6 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X7 VOUT a_16652_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X8 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X9 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X10 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X11 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X12 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X13 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X14 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X15 a_22144_9605# VIN a_22144_9605# VIN pfet_06v0 ad=1.5p pd=6.2u as=9.3p ps=41.62u w=2.5u l=3u
+X16 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X17 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X18 EAOUT VSS EAOUT VSS nfet_06v0 ad=1.4p pd=5.56u as=14.4p ps=55.76u w=5u l=3u
+X19 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0.21486n ps=0.90584m w=2.5u l=3u
+X20 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X21 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X22 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X23 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X24 a_23576_3894# VREF EAOUT VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X25 VSS IREF a_23576_3894# VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X26 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X27 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X28 VIN VIN VIN VIN pfet_06v0 ad=0.725p pd=3.66u as=0 ps=0 w=1.25u l=0.55u
+X29 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X30 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X31 VSS VSS VSS VSS nfet_05v0 ad=0.725p pd=3.66u as=53.4p ps=0.22226m w=1.25u l=0.6u
+X32 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X33 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X34 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X35 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X36 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X37 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X38 v2_pmos_core.EAREF VIN a_22144_9605# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X39 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X40 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X41 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X42 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X43 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X44 VIN EAOUT VOUT VIN pfet_06v0 ad=1.8p pd=7.2u as=0.84p ps=3.56u w=3u l=0.55u
+X45 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X46 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X47 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X48 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X49 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X50 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X51 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X52 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X53 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X54 v2_pmos_core.EAREF VIN v2_pmos_core.EAREF VIN pfet_06v0 ad=0.75p pd=3.7u as=4.3p ps=21.88u w=1.25u l=0.55u
+X55 a_23576_3894# IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X56 VIN a_22144_8265# a_22144_8265# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X57 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X58 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X59 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X60 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X61 a_15692_18710# a_14732_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X62 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X63 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X64 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X65 VSS EN v2_pmos_core.ENB_5V VSS nfet_06v0 ad=0.3p pd=2.2u as=0.3p ps=2.2u w=0.5u l=5u
+X66 VSS VSS VSS VSS nfet_05v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=0.6u
+X67 EAOUT v2_pmos_core.EAREF a_22144_9605# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X68 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X69 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X70 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X71 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X72 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X73 VIN FB FB_BUF VSS nfet_05v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X74 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X75 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X76 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X77 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X78 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X79 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X80 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X81 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X82 VSS VSS VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X83 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=1.8p ps=7.2u w=3u l=0.55u
+X84 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X85 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X86 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X87 v2_pmos_core.EAREF VIN v2_pmos_core.EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0 ps=0 w=1.25u l=0.55u
+X88 VSS IREF a_23576_3894# VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X89 a_15692_18710# a_16652_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X90 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X91 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X92 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X93 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X94 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X95 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X96 EAOUT_BUF a_644_5248# VSS VSS nfet_05v0 ad=1.5p pd=6.2u as=1.5p ps=6.2u w=2.5u l=0.6u
+X97 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X98 VIN EAOUT VOUT VIN pfet_06v0 ad=1.8p pd=7.2u as=0.84p ps=3.56u w=3u l=0.55u
+X99 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X100 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=3u
+X101 a_13292_18710# VSS VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X102 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X103 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X104 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X105 a_22144_8265# a_22144_8265# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X106 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X107 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X108 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X109 EAOUT VOUT cap_mim_2f0_m4m5_noshield c_width=27.35u c_length=54.5u
+X110 VIN v2_pmos_core.ENB_5V VIN_BIAS VIN pfet_06v0 ad=3p pd=11.2u as=1.4p ps=5.56u w=5u l=0.6u
+X111 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X112 a_12332_18710# a_12812_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X113 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X114 a_22144_9605# v2_pmos_core.EAREF EAOUT VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X115 VIN VIN VIN VIN pfet_06v0 ad=0.725p pd=3.66u as=0 ps=0 w=1.25u l=0.55u
+X116 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X117 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X118 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X119 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X120 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X121 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X122 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X123 IREF IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X124 FB_BUF a_644_5248# VSS VSS nfet_05v0 ad=1.5p pd=6.2u as=1.5p ps=6.2u w=2.5u l=0.6u
+X125 VSS VSS VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X126 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X127 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X128 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X129 VIN EAOUT EAOUT_BUF VSS nfet_05v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X130 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X131 a_644_5248# v2_pmos_core.ENB_5V VSS VSS nfet_05v0 ad=0.6p pd=3.2u as=0.6p ps=3.2u w=1u l=0.6u
+X132 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X133 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X134 a_22144_8265# a_22144_8265# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X135 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X136 VSS v2_pmos_core.ENB_5V IREF VSS nfet_05v0 ad=0.6p pd=3.2u as=0.6p ps=3.2u w=1u l=0.6u
+X137 a_13292_18710# a_14252_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X138 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X139 VSS VSS VSS VSS nfet_06v0 ad=2.9p pd=11.16u as=0 ps=0 w=5u l=3u
+X140 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X141 a_644_5248# a_644_5248# VSS VSS nfet_05v0 ad=1.5p pd=6.2u as=1.5p ps=6.2u w=2.5u l=0.6u
+X142 a_22144_8265# VIN a_22144_8265# VIN pfet_06v0 ad=1.5p pd=6.2u as=8.6p ps=38u w=2.5u l=3u
+X143 v2_pmos_core.EAREF v2_pmos_core.EAREF a_22144_8265# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X144 a_22144_9605# VIN v2_pmos_core.EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X145 VIN_BIAS a_644_5248# VSS ppolyf_u_1k_6p0 r_width=1u r_length=1.94384m
+X146 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X147 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X148 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X149 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X150 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X151 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X152 v2_pmos_core.EAREF FB a_23576_3894# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X153 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X154 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X155 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X156 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X157 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X158 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X159 v2_pmos_core.EAREF VSS v2_pmos_core.EAREF VSS nfet_06v0 ad=3p pd=11.2u as=14.4p ps=55.76u w=5u l=3u
+X160 a_22144_9605# VIN a_22144_9605# VIN pfet_06v0 ad=0.7p pd=3.06u as=0 ps=0 w=2.5u l=3u
+X161 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X162 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X163 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X164 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X165 VSS IREF IREF VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X166 VIN a_22144_8265# a_22144_9605# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X167 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X168 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X169 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X170 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X171 VIN v2_pmos_core.ENB_5V v2_pmos_core.EN_5V VIN pfet_06v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X172 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X173 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X174 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X175 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X176 a_15212_18710# a_14252_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X177 EAOUT VREF a_23576_3894# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X178 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X179 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X180 VSS VSS VSS VSS nfet_05v0 ad=0.75p pd=3.7u as=0 ps=0 w=1.25u l=0.6u
+X181 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X182 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X183 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X184 EAOUT VSS EAOUT VSS nfet_06v0 ad=3p pd=11.2u as=0 ps=0 w=5u l=3u
+X185 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X186 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X187 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X188 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X189 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X190 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X191 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X192 VIN a_22144_8265# a_22144_9605# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X193 VIN v2_pmos_core.EN_5V EAOUT VIN pfet_06v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X194 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X195 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=3u
+X196 a_23576_3894# IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X197 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X198 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X199 VIN EAOUT VOUT VIN pfet_06v0 ad=1.8p pd=7.2u as=0.84p ps=3.56u w=3u l=0.55u
+X200 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X201 a_644_5248# a_644_5248# VSS VSS nfet_05v0 ad=1.5p pd=6.2u as=1.5p ps=6.2u w=2.5u l=0.6u
+X202 EAOUT v2_pmos_core.EAREF a_22144_9605# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X203 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X204 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X205 VSS v2_pmos_core.ENB_5V VOUT VSS nfet_05v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X206 a_23576_3894# VREF EAOUT VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X207 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X208 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X209 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X210 a_22144_8265# v2_pmos_core.EAREF v2_pmos_core.EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X211 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X212 IREF IREF VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X213 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X214 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X215 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X216 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X217 VSS VSS VSS VSS nfet_05v0 ad=0.35p pd=1.81u as=0 ps=0 w=1.25u l=0.6u
+X218 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X219 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X220 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X221 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X222 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X223 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X224 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X225 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X226 a_13772_18710# a_12812_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X227 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X228 a_23576_3894# FB v2_pmos_core.EAREF VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X229 FB_BUF a_644_5248# VSS VSS nfet_05v0 ad=1.5p pd=6.2u as=1.5p ps=6.2u w=2.5u l=0.6u
+X230 a_22144_8265# v2_pmos_core.EAREF v2_pmos_core.EAREF VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X231 v2_pmos_core.EAREF v2_pmos_core.EAREF a_22144_8265# VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X232 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X233 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X234 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X235 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X236 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X237 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X238 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X239 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X240 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X241 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X242 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X243 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=1.8p ps=7.2u w=3u l=0.55u
+X244 a_22144_9605# a_22144_8265# VIN VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X245 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X246 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X247 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X248 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X249 EAOUT_BUF a_644_5248# VSS VSS nfet_05v0 ad=1.5p pd=6.2u as=1.5p ps=6.2u w=2.5u l=0.6u
+X250 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X251 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X252 EAOUT VREF a_23576_3894# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X253 a_22144_9605# v2_pmos_core.EAREF EAOUT VIN pfet_06v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.55u
+X254 VSS VSS VSS VSS nfet_05v0 ad=0.725p pd=3.66u as=0 ps=0 w=1.25u l=0.6u
+X255 a_13772_18710# a_14732_8722# VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X256 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X257 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X258 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X259 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X260 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X261 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X262 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X263 VSS IREF IREF VSS nfet_05v0 ad=0.35p pd=1.81u as=0.35p ps=1.81u w=1.25u l=0.6u
+X264 VIN VSS v2_pmos_core.ENB_5V VIN pfet_06v0 ad=0.6p pd=3.2u as=0.6p ps=3.2u w=1u l=40u
+X265 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X266 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X267 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X268 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X269 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X270 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X271 VIN_BIAS IREF VSS ppolyf_u_1k_6p0 r_width=1u r_length=0.19609m
+X272 v2_pmos_core.EAREF FB a_23576_3894# VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X273 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X274 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X275 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X276 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X277 VSS VSS VSS VSS nfet_05v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=0.6u
+X278 a_15212_18710# FB VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X279 VIN VIN VIN VIN pfet_06v0 ad=1.45p pd=6.16u as=0 ps=0 w=2.5u l=3u
+X280 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X281 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X282 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X283 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X284 a_22144_8265# VIN a_22144_8265# VIN pfet_06v0 ad=0.7p pd=3.06u as=0 ps=0 w=2.5u l=3u
+X285 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X286 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X287 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X288 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X289 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X290 VIN a_22144_8265# a_22144_8265# VIN pfet_06v0 ad=0.7p pd=3.06u as=0.7p ps=3.06u w=2.5u l=3u
+X291 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=1.8p ps=7.2u w=3u l=0.55u
+X292 VSS v2_pmos_core.ENB_5V v2_pmos_core.EN_5V VSS nfet_05v0 ad=3p pd=11.2u as=3p ps=11.2u w=5u l=0.6u
+X293 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X294 v2_pmos_core.EAREF VSS v2_pmos_core.EAREF VSS nfet_06v0 ad=1.4p pd=5.56u as=0 ps=0 w=5u l=3u
+X295 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X296 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X297 a_23576_3894# FB v2_pmos_core.EAREF VSS nfet_06v0 ad=1.4p pd=5.56u as=1.4p ps=5.56u w=5u l=3u
+X298 VIN_BIAS v2_pmos_core.ENB_5V VIN VIN pfet_06v0 ad=1.4p pd=5.56u as=3p ps=11.2u w=5u l=0.6u
+X299 VOUT EAOUT VIN VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X300 a_12332_18710# FB VSS ppolyf_u_1k_6p0 r_width=2u r_length=49.33u
+X301 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X302 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+X303 VIN EAOUT VOUT VIN pfet_06v0 ad=0.84p pd=3.56u as=0.84p ps=3.56u w=3u l=0.55u
+C0 VREF a_23576_3894# 1.21364f
+C1 v2_pmos_core.ENB_5V a_644_5248# 0.02787f
+C2 FB a_16652_8722# 0.09449f
+C3 v2_pmos_core.EN_5V FB 0.13954f
+C4 VOUT IREF 0.00178f
+C5 v2_pmos_core.ENB_5V EN 0.45365f
+C6 v2_pmos_core.EN_5V v2_pmos_core.EAREF 7.58439f
+C7 v2_pmos_core.ENB_5V a_23576_3894# 1.12181f
+C8 v2_pmos_core.ENB_5V FB_BUF 0.0069f
+C9 v2_pmos_core.EN_5V EN 0
+C10 EAOUT_BUF VIN_BIAS 0.01287f
+C11 a_22144_8265# a_22144_9605# 4.13681f
+C12 v2_pmos_core.EN_5V a_23576_3894# 2.42944f
+C13 EAOUT IREF 0
+C14 a_15692_18710# VOUT 0.10952f
+C15 EAOUT_BUF VIN 1.73917f
+C16 VIN a_22144_9605# 7.006f
+C17 a_14252_8722# a_14732_8722# 0.55839f
+C18 EAOUT FB 2.46299f
+C19 VIN a_22144_8265# 18.4634f
+C20 VIN VIN_BIAS 3.5043f
+C21 EAOUT v2_pmos_core.EAREF 0.83276f
+C22 FB a_14732_8722# 0.10952f
+C23 a_22144_8265# VREF 0.01312f
+C24 VIN_BIAS VREF 0.56562f
+C25 VOUT a_15212_18710# 0
+C26 EAOUT_BUF v2_pmos_core.ENB_5V 0.00483f
+C27 FB IREF 1.17364f
+C28 v2_pmos_core.ENB_5V a_22144_9605# 0.00156f
+C29 EAOUT a_23576_3894# 2.23888f
+C30 FB a_14252_8722# 0
+C31 VIN VREF 1.86855f
+C32 v2_pmos_core.ENB_5V a_22144_8265# 0.00279f
+C33 v2_pmos_core.ENB_5V VIN_BIAS 0.32214f
+C34 v2_pmos_core.EN_5V a_22144_9605# 1.89555f
+C35 IREF EN 0.52473f
+C36 FB v2_pmos_core.EAREF 1.60229f
+C37 VIN v2_pmos_core.ENB_5V 5.84222f
+C38 FB a_644_5248# 0
+C39 v2_pmos_core.EN_5V a_22144_8265# 0.231f
+C40 IREF a_23576_3894# 2.21874f
+C41 v2_pmos_core.EN_5V VIN_BIAS 0.21628f
+C42 VIN a_16652_8722# 0
+C43 FB EN 0.00702f
+C44 v2_pmos_core.ENB_5V VREF 0
+C45 v2_pmos_core.EN_5V VIN 5.49317f
+C46 FB a_23576_3894# 1.47291f
+C47 VIN_BIAS VOUT 1.06282f
+C48 v2_pmos_core.EAREF a_23576_3894# 2.98575f
+C49 FB FB_BUF 0.13171f
+C50 v2_pmos_core.EN_5V VREF 0.09237f
+C51 VIN VOUT 0.22154p
+C52 EAOUT_BUF EAOUT 0.13173f
+C53 EAOUT a_22144_9605# 2.15655f
+C54 FB_BUF a_644_5248# 0.62203f
+C55 EN a_23576_3894# 0.00117f
+C56 a_15692_18710# a_13772_18710# 0.01219f
+C57 EAOUT a_22144_8265# 0.16061f
+C58 VOUT VREF 6.6445f
+C59 EAOUT VIN_BIAS 3.26767f
+C60 v2_pmos_core.EN_5V v2_pmos_core.ENB_5V 7.6458f
+C61 a_15692_18710# a_15212_18710# 0.55839f
+C62 a_13292_18710# a_13772_18710# 0.55839f
+C63 a_13292_18710# a_12332_18710# 0.10341f
+C64 a_12812_8722# a_14252_8722# 0.10341f
+C65 EAOUT VIN 0.1111p
+C66 a_13292_18710# a_15212_18710# 0.00488f
+C67 v2_pmos_core.ENB_5V VOUT 0.21116f
+C68 a_12812_8722# FB 0.09449f
+C69 VIN_BIAS IREF 2.64893f
+C70 EAOUT_BUF FB 0.00117f
+C71 EAOUT VREF 6.43736f
+C72 a_15212_18710# a_13772_18710# 0.09449f
+C73 v2_pmos_core.EN_5V VOUT 0.00126f
+C74 v2_pmos_core.EAREF a_22144_9605# 1.11501f
+C75 EAOUT_BUF a_644_5248# 3.08479f
+C76 FB a_22144_8265# 0.0111f
+C77 FB VIN_BIAS 4.33507f
+C78 v2_pmos_core.EAREF a_22144_8265# 5.22465f
+C79 EAOUT v2_pmos_core.ENB_5V 6.84284f
+C80 VIN_BIAS v2_pmos_core.EAREF 0.00359f
+C81 VREF IREF 0.00653f
+C82 VIN FB 0.12777f
+C83 EAOUT a_16652_8722# 0.00551f
+C84 VIN v2_pmos_core.EAREF 7.48966f
+C85 VIN_BIAS EN 0.06445f
+C86 v2_pmos_core.EN_5V EAOUT 1.77002f
+C87 VIN a_644_5248# 0.00105f
+C88 a_16652_8722# a_14732_8722# 0
+C89 EAOUT_BUF FB_BUF 3.16535f
+C90 FB VREF 3.37218f
+C91 v2_pmos_core.ENB_5V IREF 6.00996f
+C92 v2_pmos_core.EAREF VREF 0.18625f
+C93 EAOUT VOUT 52.2522f
+C94 v2_pmos_core.ENB_5V FB 1.29441f
+C95 a_14252_8722# a_16652_8722# 0.00328f
+C96 v2_pmos_core.EN_5V IREF 0.09314f
+C97 VIN FB_BUF 1.3355f
+C98 v2_pmos_core.ENB_5V v2_pmos_core.EAREF 0.01808f
+C99 EN VSS 4.87136f
+C100 VREF VSS 12.1185f
+C101 FB_BUF VSS 7.62227f
+C102 EAOUT_BUF VSS 7.08043f
+C103 VOUT VSS 27.0866f
+C104 VIN VSS 0.47448p
+C105 IREF VSS 13.7473f ; **FLOATING
+C106 a_23576_3894# VSS 4.44158f ; **FLOATING
+C107 a_22144_9605# VSS 0.199f ; **FLOATING
+C108 a_22144_8265# VSS 0.41209f ; **FLOATING
+C109 v2_pmos_core.EN_5V VSS 4.91109f ; **FLOATING
+C110 v2_pmos_core.EAREF VSS 4.81589f ; **FLOATING
+C111 v2_pmos_core.ENB_5V VSS 13.9042f ; **FLOATING
+C112 EAOUT VSS 27.2077f ; **FLOATING
+C113 a_16652_8722# VSS 1.40196f ; **FLOATING
+C114 a_15692_18710# VSS 1.45777f ; **FLOATING
+C115 a_15212_18710# VSS 1.38361f ; **FLOATING
+C116 a_14732_8722# VSS 1.47046f ; **FLOATING
+C117 a_14252_8722# VSS 1.37773f ; **FLOATING
+C118 a_13772_18710# VSS 1.47358f ; **FLOATING
+C119 a_13292_18710# VSS 1.37661f ; **FLOATING
+C120 a_12812_8722# VSS 1.72453f ; **FLOATING
+C121 FB VSS 17.4028f ; **FLOATING
+C122 a_12332_18710# VSS 1.40397f ; **FLOATING
+C123 VIN_BIAS VSS 18.941f ; **FLOATING
+C124 a_644_5248# VSS 19.3874f ; **FLOATING
+.ends

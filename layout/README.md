@@ -3,6 +3,10 @@
 Physical design of the capless LDO and its verification on the extracted layout. The
 schematic-only results are in [`../simulations/README.md`](../simulations/README.md).
 
+> A second, more compact and better-matched layout (v2: shared guard rings, 2-D common
+> centroid, Kelvin sense, edge-to-edge supply rails) is documented in
+> [`v2/README.md`](v2/README.md).
+
 ![full layout](doc/full_layout.png)
 
 | Item | Result |
