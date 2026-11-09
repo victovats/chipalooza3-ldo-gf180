@@ -492,7 +492,8 @@ def write(P):
         t += [f"box values {bl.um(x)} {bl.um(y)} {bl.um(x)} {bl.um(y)}", f"label {net} c {layer}",
               f"port make {i}"]
     t += ["select top cell", "save", f"gds write {TOP}.gds",
-          "extract all", "ext2spice lvs", "ext2spice hierarchy off", f"ext2spice -o lvs/{TOP}_lay.spice",
+          "extract unique",            # same-name labels on unconnected metal get distinct names:
+          "extract all", "ext2spice lvs",   # no connection by label name alone "ext2spice hierarchy off", f"ext2spice -o lvs/{TOP}_lay.spice",
           "quit -noprompt"]
     (HERE / "_route.tcl").write_text("\n".join(t) + "\n")
     p = subprocess.run([bl.MAGIC, "-dnull", "-noconsole", "-rcfile", bl.RC, "_route.tcl"], cwd=HERE,

@@ -20,8 +20,8 @@ Related documents:
 | Guard rings | one per device | **two**: one p+ ring for every NMOS, one n-well for every PMOS but the pass device |
 | Input pair / mirror load | ABBA, 1 dummy per end | **2-D common centroid** (A B B A over B A A B), 2 dummies per end |
 | Supply | buses over the pass device | **VIN and VSS rails edge to edge** (a grid the slot can join from either side), VOUT bus to the VOUT pin, Kelvin sense line |
-| DRC (official KLayout deck) | clean | **clean** (whole-die density rules are met by chip-level fill) |
-| LVS (netgen vs the schematic) | match | **match, no property errors** |
+| DRC (official KLayout deck) | [clean](../layout_v1/README.md) | **[clean](lvs/ldo_v2.lyrdb)** (whole-die density rules are met by chip-level fill) |
+| LVS (netgen vs the schematic) | [match](../layout_v1/lvs/comp.out) | **[match, no property errors](lvs/ldo_v2.out)** |
 | Post-layout (RC-extracted), all 45 corners | all specs pass | **all specs pass** |
 | Worst-case phase margin (2 pF) | 65.7° | **64.4°** |
 
@@ -84,7 +84,9 @@ devices (DUALGATE; V5_XTOR only around the L = 0.6 µm NMOS):
   order is chosen to minimise crossings, and nets shared by both groups get the same
   column so the pins line up across the 1.2 µm gap.
 
-Each group passes DRC and LVS on its own ([check_groups.py](check_groups.py)).
+Each group passes DRC and LVS on its own ([check_groups.py](check_groups.py)): NMOS group
+[DRC](lvs/v2_nmos_core.lyrdb) / [LVS](lvs/v2_nmos_core.out), PMOS group
+[DRC](lvs/v2_pmos_core.lyrdb) / [LVS](lvs/v2_pmos_core.out).
 
 ![NMOS group](doc/v2_nmos_group.png)
 
@@ -147,11 +149,17 @@ Test buffers (RrefEA, bias mirror, MPDEA, the two followers) and their channels:
 
 ## 5. Verification
 
-* **DRC** — official GF180MCU KLayout deck (gf180mcuD): clean. The whole-die
-  density rules (Mx.4, MT.3, DCF.1b, PL.8) are met by the harness's chip-level fill.
+* **DRC** — official GF180MCU KLayout deck (gf180mcuD: 5 metals, 11K top metal, MIM
+  option B; all 777 rules): clean. Report: [lvs/ldo_v2.lyrdb](lvs/ldo_v2.lyrdb) (open it
+  with `klayout ldo_v2.gds -m lvs/ldo_v2.lyrdb`). Its only 7 entries are the whole-die
+  density rules (M1.4–M5.4, MT.3, DCF.1b), which the harness's chip-level fill meets.
 * **LVS** — magic extraction against the schematic netlist with netgen: *Circuits
   match uniquely*, no property errors (28 devices, 18 nets after merging fingers).
-  30 dummy devices (gate tied to the bulk, always off) are removed first.
+  Report: [lvs/ldo_v2.out](lvs/ldo_v2.out) (verdict on the last line); extracted
+  netlist: [lvs/ldo_v2_lvs.spice](lvs/ldo_v2_lvs.spice). The extraction runs with
+  `extract unique`, so two pieces of metal with the same label are one net only if
+  they are physically connected (no connection by name). 30 dummy devices (gate tied
+  to the bulk, always off) are removed first.
 
 ## 6. Post-layout results
 
