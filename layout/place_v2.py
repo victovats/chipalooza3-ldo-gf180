@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 """Layout v2, step 1: device placement only (no routing).
 
-    cd layout && python3 place_v2.py         # side
-    cd layout && python3 place_v2.py top
+    cd layout && python3 place_v2.py         # snug (the final floorplan)
 
 Places the compact core groups from core_groups.py and the other device cells
-from build_layout.py (Cc and MPASS reshaped, see V2_RESHAPE) as one rectangle,
-in one of two floorplans (see plan()):
+from build_layout.py (Cc and MPASS reshaped, see V2_RESHAPE) as one rectangle
+(see plan()):
 
-  * side: R1/R2 divider | amplifier core column | Miller cap Cc | pass device
-  * top:  pass device across the top on the amplifier axis; R1/R2 | core | Cc below
   * snug: core column = the two groups; Rref under Cc in the right column; pass device
           above the core + right columns; R1/R2 beside the pass device
   * core column in signal order from the bottom: Rref -> all NMOS (bias /
     enable row, folded input pair) -> all PMOS (folded load, cascodes +
     switches, MP1), every matched device on one vertical axis
   * the test buffers (RrefEA, bias mirror, followers) sit outside the
-    rectangle on the far left; they are not part of the LDO
+    rectangle; they are not part of the LDO
+  * "side" and "top" are earlier floorplans kept as options; route_v2.py wires
+    only the snug one
 
-Writes ldo_v2_place[_top].mag / .gds / .png / .json (placement record).
+Writes ldo_v2_place_snug.mag / .gds / .json (placement record) and a preview .png.
 """
 import subprocess
 import sys
@@ -45,7 +44,7 @@ V2_GROUPS = {"v2_nmos_core": ["MREF_MTAIL", "MPDREF", "MN2", "MENDISCHARGE", "MN
 #   top:  MPASS (3 rows x 70 fingers) across the top, centred on the core axis, with the
 #         VIN / VOUT buses above it; below it R1/R2 | core | Cc. The heat source sits on the
 #         amplifier's symmetry axis and EAOUT runs straight up from the core to the gate.
-FLOORPLAN = sys.argv[1] if len(sys.argv) > 1 else "side"
+FLOORPLAN = sys.argv[1] if len(sys.argv) > 1 else "snug"
 TOP = "ldo_v2_place" + ("" if FLOORPLAN == "side" else "_" + FLOORPLAN)
 
 
@@ -229,7 +228,7 @@ def main():
         s += [f"use {name}  {inst}", f"timestamp {props.get('timestamp', '0')}",
               f"transform 1 0 {tx} 0 1 {ty}", f"box {fb}"]
     s.append("<< end >>")
-    # placement record for ratsnest.py: cell box and cell origin of every instance, in um
+    # placement record (read by route_v2.py and make_doc_images.py): cell box and cell origin of every instance, in um
     import json
     (HERE / f"{TOP}.json").write_text(json.dumps({inst: dict(
         cell=info[inst][0], box=[round(v / bl.UM, 3) for v in boxes[inst]],

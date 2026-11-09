@@ -12,3 +12,5 @@ __pycache__/
 
 # magic extraction intermediates (regenerated on every run)
 *.ext
+# placement preview written by place_v2.py
+layout/ldo_v2_place*.png
