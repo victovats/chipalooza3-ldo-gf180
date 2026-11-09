@@ -142,11 +142,16 @@ current at fast MOS / 110 C (leakage).
 | `xschem/ldo_levelshift.sch`, `.sym` | 3.3V-to-`VIN` level shifter for `EN` |
 | `simulations/tb_*.sch` | One xschem testbench per test in the test plan |
 | `simulations/run_sims.py` | Runs all testbenches, plots results, checks against spec |
-| `simulations/results/` | Result plots and summary table |
+| `simulations/results/` | Result plots and summary table (schematic) |
+| `simulations/stability.py` | Loop-gain / phase-margin sweep |
+| `simulations/results_pex_c/`, `results_pex_rc/` | Post-layout results on the extracted C / RC netlists |
+| `simulations/README.md` | Schematic simulation results |
 | `netlist/schematic/ldo.spice` | Exported schematic netlist |
-| `layout/build_layout.py` | Generates the layout (magic), runs DRC, extraction and LVS |
-| `layout/mag/`, `layout/gds/ldo.gds` | Layout (magic cells) and GDS, 286.8 x 130.9 um |
+| `layout/build_layout.py`, `gl_devices.py` | Generates the layout (gLayout transistors + magic), runs DRC, extraction and LVS |
+| `layout/mag/`, `layout/gds/ldo.gds` | Layout (magic cells) and GDS, 188.3 x 146.9 um |
 | `layout/lvs/` | Extracted netlist and netgen LVS report (`comp.out`) |
+| `layout/pex/` | Parasitic extraction (C / RC) and EM/IR check |
+| `layout/README.md` | Layout and post-layout results |
 
 ## 9. Reproducing the Results
 
@@ -156,14 +161,28 @@ the gf180mcuD PDK with `PDK_ROOT` set, and Python 3 with numpy and matplotlib
 
 ```sh
 cd simulations
-python3 run_sims.py --corners
+python3 run_sims.py --corners      # spec tests, typical + 45 corners
+python3 stability.py               # loop gain / phase margin
 ```
 
-Layout, DRC and LVS (magic and netgen, also in IIC-OSIC-TOOLS):
+Layout, DRC and LVS (magic and netgen, also in IIC-OSIC-TOOLS). The transistors
+are generated with [gLayout](https://github.com/ReaLLMASIC/gLayout), which needs
+its own Python 3.10/3.11 environment; point `GLAYOUT_PYTHON` at it.
 
 ```sh
 cd layout
 python3 build_layout.py
+```
+
+Post-layout (parasitic extraction, simulation of the extracted netlist, EM/IR):
+
+```sh
+cd layout/pex
+magic -dnull -noconsole -rcfile $PDK_ROOT/gf180mcuD/libs.tech/magic/gf180mcuD.magicrc pex.tcl
+python3 emir_check.py
+cd ../../simulations
+python3 run_sims.py --pex rc
+python3 stability.py --pex rc
 ```
 
 Testbenches can also be opened and simulated individually in xschem
@@ -172,10 +191,14 @@ in this repository or in the PDK via `$PDK_ROOT`.
 
 ## 10. Open Items
 
-- Quiescent current has ~10% margin at the fast-resistor / 110 C corner
+- Quiescent current has ~13% margin at the fast-resistor / 110 C corner
   (87 uA vs 100 uA); bias currents are set by poly resistors from `VIN`.
-- Add an AC loop-gain / phase-margin testbench across corners (current
-  stability evidence: load- and line-step transients).
-- Load-step overshoot (+313 mV for a 0-10 mA step in 1 us) is not yet
-  specified; decide on a transient spec or reduce it.
-- Layout in the harness slot (template TBD), DRC/LVS, post-layout PVT.
+- Output capacitance on `VOUT` is limited for 45 deg phase margin
+  (post-layout, worst corner): ~12 pF at no load, ~28 pF above 10 uA,
+  ~100 pF above 100 uA. Adaptive biasing of the error amplifier would relax this.
+- Load-step response (-244 / +340 mV post-layout for a 0-10 mA step in 1 us)
+  is not specified; loads with fast (ns) current edges need their own decoupling.
+- Harness integration: slot number not yet assigned. The block must be placed
+  in the `slot<N>_wrapper` template (1274.3 x 412.7 um) and delivered as
+  `gds/slot_<N>.gds` with top cell `slot_<N>`, then DRC/LVS re-run on the
+  wrapped cell.
